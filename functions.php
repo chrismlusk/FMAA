@@ -9,7 +9,7 @@
 	External Modules/Files
 \*------------------------------------*/
 
-// Load any external files you have here
+require_once('wp_bootstrap_navwalker.php');
 
 /*------------------------------------*\
 	Theme Support
@@ -65,26 +65,26 @@ if (function_exists('add_theme_support'))
 // HTML5 Blank navigation
 function html5blank_nav()
 {
-	wp_nav_menu(
-	array(
-		'theme_location'  => 'header-menu',
-		'menu'            => '',
-		'container'       => 'div',
-		'container_class' => 'menu-{menu slug}-container',
-		'container_id'    => '',
-		'menu_class'      => 'menu',
-		'menu_id'         => '',
-		'echo'            => true,
-		'fallback_cb'     => 'wp_page_menu',
-		'before'          => '',
-		'after'           => '',
-		'link_before'     => '',
-		'link_after'      => '',
-		'items_wrap'      => '<ul>%3$s</ul>',
-		'depth'           => 0,
-		'walker'          => ''
-		)
-	);
+    wp_nav_menu(
+    array(
+        'theme_location'  => 'header-menu',
+        'menu'            => '',
+        'container'       => 'div',
+        'container_class' => 'navbar-collapse collapse',
+        'container_id'    => 'bs-example-navbar-collapse-1',
+        'fallback_cb'     => 'wp_bootstrap_navwalker::fallback',
+        'menu_class'      => 'nav navbar-nav navbar-right',
+        'menu_id'         => '',
+        'echo'            => true,
+        'before'          => '',
+        'after'           => '',
+        'link_before'     => '',
+        'link_after'      => '',
+        'items_wrap'      => '<ul class="%2$s">%3$s</ul>',
+        'depth'           => 2,
+        'walker'          => new wp_bootstrap_navwalker()
+        )
+    );
 }
 
 // Load HTML5 Blank scripts (header.php)
@@ -97,6 +97,9 @@ function html5blank_header_scripts()
 
         wp_register_script('modernizr', get_template_directory_uri() . '/js/lib/modernizr-2.7.1.min.js', array(), '2.7.1'); // Modernizr
         wp_enqueue_script('modernizr'); // Enqueue it!
+
+        wp_register_script('bootstrap.js', get_template_directory_uri() . '/js/lib/bootstrap.min.js', array(), '3.3.5', true); // bootstrap.js
+        wp_enqueue_script('bootstrap.js'); // Enqueue it!
 
         wp_register_script('html5blankscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0'); // Custom scripts
         wp_enqueue_script('html5blankscripts'); // Enqueue it!
@@ -117,6 +120,9 @@ function html5blank_styles()
 {
     wp_register_style('normalize', get_template_directory_uri() . '/normalize.css', array(), '1.0', 'all');
     wp_enqueue_style('normalize'); // Enqueue it!
+
+    wp_register_style('bootstrap.min.css', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '1.0'); // bootstrap.min.css
+    wp_enqueue_style('bootstrap.min.css'); // Enqueue it!
 
     wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
     wp_enqueue_style('html5blank'); // Enqueue it!
@@ -368,7 +374,7 @@ add_filter('avatar_defaults', 'html5blankgravatar'); // Custom Gravatar in Setti
 add_filter('body_class', 'add_slug_to_body_class'); // Add slug to body class (Starkers build)
 add_filter('widget_text', 'do_shortcode'); // Allow shortcodes in Dynamic Sidebar
 add_filter('widget_text', 'shortcode_unautop'); // Remove <p> tags in Dynamic Sidebars (better!)
-add_filter('wp_nav_menu_args', 'my_wp_nav_menu_args'); // Remove surrounding <div> from WP Navigation
+// add_filter('wp_nav_menu_args', 'my_wp_nav_menu_args'); // Remove surrounding <div> from WP Navigation
 // add_filter('nav_menu_css_class', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected classes (Commented out by default)
 // add_filter('nav_menu_item_id', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected ID (Commented out by default)
 // add_filter('page_css_class', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> Page ID's (Commented out by default)
@@ -396,42 +402,42 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 \*------------------------------------*/
 
 // Create 1 Custom Post type for a Demo, called HTML5-Blank
-function create_post_type_html5()
-{
-    register_taxonomy_for_object_type('category', 'html5-blank'); // Register Taxonomies for Category
-    register_taxonomy_for_object_type('post_tag', 'html5-blank');
-    register_post_type('html5-blank', // Register Custom Post Type
-        array(
-        'labels' => array(
-            'name' => __('HTML5 Blank Custom Post', 'html5blank'), // Rename these to suit
-            'singular_name' => __('HTML5 Blank Custom Post', 'html5blank'),
-            'add_new' => __('Add New', 'html5blank'),
-            'add_new_item' => __('Add New HTML5 Blank Custom Post', 'html5blank'),
-            'edit' => __('Edit', 'html5blank'),
-            'edit_item' => __('Edit HTML5 Blank Custom Post', 'html5blank'),
-            'new_item' => __('New HTML5 Blank Custom Post', 'html5blank'),
-            'view' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'view_item' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'search_items' => __('Search HTML5 Blank Custom Post', 'html5blank'),
-            'not_found' => __('No HTML5 Blank Custom Posts found', 'html5blank'),
-            'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'html5blank')
-        ),
-        'public' => true,
-        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
-        'has_archive' => true,
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'thumbnail'
-        ), // Go to Dashboard Custom HTML5 Blank post for supports
-        'can_export' => true, // Allows export in Tools > Export
-        'taxonomies' => array(
-            'post_tag',
-            'category'
-        ) // Add Category and Post Tags support
-    ));
-}
+// function create_post_type_html5()
+// {
+//     register_taxonomy_for_object_type('category', 'html5-blank'); // Register Taxonomies for Category
+//     register_taxonomy_for_object_type('post_tag', 'html5-blank');
+//     register_post_type('html5-blank', // Register Custom Post Type
+//         array(
+//         'labels' => array(
+//             'name' => __('HTML5 Blank Custom Post', 'html5blank'), // Rename these to suit
+//             'singular_name' => __('HTML5 Blank Custom Post', 'html5blank'),
+//             'add_new' => __('Add New', 'html5blank'),
+//             'add_new_item' => __('Add New HTML5 Blank Custom Post', 'html5blank'),
+//             'edit' => __('Edit', 'html5blank'),
+//             'edit_item' => __('Edit HTML5 Blank Custom Post', 'html5blank'),
+//             'new_item' => __('New HTML5 Blank Custom Post', 'html5blank'),
+//             'view' => __('View HTML5 Blank Custom Post', 'html5blank'),
+//             'view_item' => __('View HTML5 Blank Custom Post', 'html5blank'),
+//             'search_items' => __('Search HTML5 Blank Custom Post', 'html5blank'),
+//             'not_found' => __('No HTML5 Blank Custom Posts found', 'html5blank'),
+//             'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'html5blank')
+//         ),
+//         'public' => true,
+//         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
+//         'has_archive' => true,
+//         'supports' => array(
+//             'title',
+//             'editor',
+//             'excerpt',
+//             'thumbnail'
+//         ), // Go to Dashboard Custom HTML5 Blank post for supports
+//         'can_export' => true, // Allows export in Tools > Export
+//         'taxonomies' => array(
+//             'post_tag',
+//             'category'
+//         ) // Add Category and Post Tags support
+//     ));
+// }
 
 /*------------------------------------*\
 	ShortCode Functions
