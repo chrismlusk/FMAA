@@ -69,9 +69,9 @@ function html5blank_nav()
     array(
         'theme_location'  => 'header-menu',
         'menu'            => '',
-        'container'       => 'div',
-        'container_class' => 'navbar-collapse collapse',
-        'container_id'    => 'navbar',
+        'container'       => '',
+        'container_class' => '',
+        'container_id'    => '',
         'fallback_cb'     => 'wp_bootstrap_navwalker::fallback',
         'menu_class'      => 'nav navbar-nav',
         'menu_id'         => '',
@@ -103,6 +103,9 @@ function html5blank_header_scripts()
 
         wp_register_script('html5blankscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0'); // Custom scripts
         wp_enqueue_script('html5blankscripts'); // Enqueue it!
+
+        wp_register_script('mainscripts', get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0.0', true); // Custom scripts
+        wp_enqueue_script('mainscripts'); // Enqueue it!
     }
 }
 
@@ -351,7 +354,7 @@ add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditi
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
-add_action('init', 'create_post_type_html5'); // Add our HTML5 Blank Custom Post Type
+add_action('init', 'friend_post_type'); // Add Friend Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
 
@@ -397,47 +400,49 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 // Shortcodes above would be nested like this -
 // [html5_shortcode_demo] [html5_shortcode_demo_2] Here's the page title! [/html5_shortcode_demo_2] [/html5_shortcode_demo]
 
+
 /*------------------------------------*\
-	Custom Post Types
+	Creating Friends types
 \*------------------------------------*/
 
-// Create 1 Custom Post type for a Demo, called HTML5-Blank
-// function create_post_type_html5()
-// {
-//     register_taxonomy_for_object_type('category', 'html5-blank'); // Register Taxonomies for Category
-//     register_taxonomy_for_object_type('post_tag', 'html5-blank');
-//     register_post_type('html5-blank', // Register Custom Post Type
-//         array(
-//         'labels' => array(
-//             'name' => __('HTML5 Blank Custom Post', 'html5blank'), // Rename these to suit
-//             'singular_name' => __('HTML5 Blank Custom Post', 'html5blank'),
-//             'add_new' => __('Add New', 'html5blank'),
-//             'add_new_item' => __('Add New HTML5 Blank Custom Post', 'html5blank'),
-//             'edit' => __('Edit', 'html5blank'),
-//             'edit_item' => __('Edit HTML5 Blank Custom Post', 'html5blank'),
-//             'new_item' => __('New HTML5 Blank Custom Post', 'html5blank'),
-//             'view' => __('View HTML5 Blank Custom Post', 'html5blank'),
-//             'view_item' => __('View HTML5 Blank Custom Post', 'html5blank'),
-//             'search_items' => __('Search HTML5 Blank Custom Post', 'html5blank'),
-//             'not_found' => __('No HTML5 Blank Custom Posts found', 'html5blank'),
-//             'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'html5blank')
-//         ),
-//         'public' => true,
-//         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
-//         'has_archive' => true,
-//         'supports' => array(
-//             'title',
-//             'editor',
-//             'excerpt',
-//             'thumbnail'
-//         ), // Go to Dashboard Custom HTML5 Blank post for supports
-//         'can_export' => true, // Allows export in Tools > Export
-//         'taxonomies' => array(
-//             'post_tag',
-//             'category'
-//         ) // Add Category and Post Tags support
-//     ));
-// }
+// Create Friends custom post type
+function friend_post_type()
+{
+    // register_taxonomy_for_object_type('category', 'friends');
+    // register_taxonomy_for_object_type('post_tag', 'friends');
+    register_post_type('friends',
+        array(
+        'labels' => array(
+            'name' => _x('Friends', 'friends'), // Rename these to suit
+            'singular_name' => _x('Friend', 'friends'),
+            'menu_name' => 'Friends',
+            'add_new' => _x('Add New', 'friends'),
+            'add_new_item' => __('Add New Friend', 'friends'),
+            'edit_item' => __('Edit Friend', 'friends'),
+            'new_item' => __('New Friend', 'friends'),
+            'view_item' => __('View Friend', 'friends'),
+            'search_items' => __('Search Friends', 'friends'),
+            'not_found' => __('No Friends found', 'friends'),
+            'not_found_in_trash' => __('No Friends found in Trash', 'friends'),
+            'parent_item_colon' => ''
+        ),
+        'public' => true,
+        'hierarchical' => true,
+        'has_archive' => false,
+        'rewrite' => false,
+        'supports' => array(
+            'title',
+            'editor',
+            'thumbnail'
+        ),
+        'can_export' => true,
+        // 'taxonomies' => array(
+        //     'post_tag',
+        //     'category'
+        // )
+    ));
+}
+
 
 /*------------------------------------*\
 	ShortCode Functions

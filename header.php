@@ -50,13 +50,18 @@
                      <span class="icon-bar"></span>
                   </button>
                   <a class="navbar-brand" href="<?php echo home_url(); ?>">
-                     <img alt="Friendship Madness logo" src="img/logos/FMAA.svg" />
+                     <img alt="Friendship Madness logo" src="<?php echo get_template_directory_uri(); ?>/img/logos/FMAA.svg" />
                   </a>
                </div>
                <!-- /logo -->
 
                <!-- navbar -->
-               <?php html5blank_nav(); ?>
+               <div id="navbar" class="navbar-collapse collapse">
+                  <?php html5blank_nav(); ?>
+                  <div class="navbar-right">
+                     <img alt="Tagline" src="<?php echo get_template_directory_uri(); ?>/img/tagline.svg" />
+                 </div>
+               </div>
                <!-- /navbar -->
 
             </div>
