@@ -145,13 +145,14 @@ a {
 }
 h1, h2, h3, h4, h5, h6 {
    font-family: $font-header;
-   font-weight: 600;
+   font-weight: 400;
    text-rendering: optimizeLegibility;
    font-feature-settings: "kern" 1;
    font-kerning: normal;
    -webkit-font-feature-settings: "kern";
    -moz-font-feature-settings: "kern";
    -moz-font-feature-settings: "kern=1";
+   margin: 0;
 }
 img {
    display: block;
@@ -202,8 +203,11 @@ img {
 .inner-wrap {
    padding: 15px;
    position: relative;
+   h1 {
+      margin: 0 0 10px;
+   }
    h4 {
-      font-weight: 400;
+      margin: 10px 0;
    }
 }
 ul.icon-list {
@@ -297,11 +301,11 @@ ul.icon-list {
    background: url('') no-repeat center center;
    background-size: contain;
    height: 28px;
-   &.big8 {
+   &.big-8 {
       background-image: url('img/logos/Big8-compact.svg');
       width: 42px;
    }
-   &.catholic7 {
+   &.catholic-7 {
       background-image: url('img/logos/Catholic7.svg');
       background-position-y: 9px;
       width: 80px;
@@ -310,7 +314,7 @@ ul.icon-list {
       background-image: url('img/logos/CMA.svg');
       width: 28px;
    }
-   &.daily {
+   &.the-daily {
       background-image: url('img/logos/Daily-compact.svg');
       background-position-y: -3px;
       width: 80px;
@@ -319,11 +323,15 @@ ul.icon-list {
       background-image: url('img/logos/Norman.svg');
       width: 30px;
    }
-   &.pack10 {
+   &.okc {
+      background-image: url('');
+      width: 30px;
+   }
+   &.pack-10 {
       background-image: url('img/logos/Pack10-compact.svg');
       width: 30px;
    }
-   &.urb {
+   &.the-urb {
       background-image: url('img/logos/Urb-compact.svg');
       background-position-y: -1px;
       width: 42px;
@@ -406,7 +414,17 @@ ul.icon-list {
       }
    }
 }
-
+.article {
+   p {
+      font-family: $font-serif;
+      font-size: 1.05em;
+      line-height: 1.5;
+      margin: 0 0 16px;
+      @media #{$break-md} {
+         font-size: 1.15em;
+      }
+   }
+}
 
 /* -------------------------- */
 /* Flex structure ----------- */
@@ -560,6 +578,11 @@ ul.icon-list {
             }
          }
       }
+      &>.active>a {
+         color: #fff;
+         background-color: lighten($primary, 6%);
+         @include transition(all);
+      }
       &:hover {
          &>li {
             &>a {
@@ -570,6 +593,9 @@ ul.icon-list {
                   }
                }
             }
+         }
+         &>.active>a {
+            background-color: transparent;
          }
       }
       .open {
@@ -625,10 +651,12 @@ ul.icon-list {
 
 
 /* -------------------------- */
-/* Homepage ----------------- */
+/* Grid slots --------------- */
 /* -------------------------- */
-#grid-home {
+#grid {
    margin-top: 50px;
+
+   // Homepage slots
    .announcements-slot {
       display: none;
       @media #{$break-md-lg} {
@@ -686,6 +714,7 @@ ul.icon-list {
       h1 {
          color: #fff;
          font-size: 1.875em;
+         font-weight: 600;
          margin: 0 0 15px;
          text-shadow: 1px 1px 2px rgba($black-text, 0.5);
          @include font-smoothing();
@@ -839,4 +868,23 @@ ul.icon-list {
          }
       }
    }
+
+   // Default slots
+   .primary-slot {
+      @media #{$break-md} {
+         flex: 9;
+      }
+   }
+   .sidebar-slot {
+      @media #{$break-md} {
+         flex: 3;
+      }
+   }
 }
+
+
+
+
+
+
+

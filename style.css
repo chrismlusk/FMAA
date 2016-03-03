@@ -58,13 +58,14 @@ a {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Aleo", "Roboto", sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   text-rendering: optimizeLegibility;
   font-feature-settings: "kern" 1;
   font-kerning: normal;
   -webkit-font-feature-settings: "kern";
   -moz-font-feature-settings: "kern";
-  -moz-font-feature-settings: "kern=1"; }
+  -moz-font-feature-settings: "kern=1";
+  margin: 0; }
 
 img {
   display: block;
@@ -115,8 +116,10 @@ img {
 .inner-wrap {
   padding: 15px;
   position: relative; }
+  .inner-wrap h1 {
+    margin: 0 0 10px; }
   .inner-wrap h4 {
-    font-weight: 400; }
+    margin: 10px 0; }
 
 ul.icon-list {
   padding: 0; }
@@ -188,27 +191,30 @@ ul.icon-list {
   background: url("") no-repeat center center;
   background-size: contain;
   height: 28px; }
-  .league-logo.big8 {
+  .league-logo.big-8 {
     background-image: url("img/logos/Big8-compact.svg");
     width: 42px; }
-  .league-logo.catholic7 {
+  .league-logo.catholic-7 {
     background-image: url("img/logos/Catholic7.svg");
     background-position-y: 9px;
     width: 80px; }
   .league-logo.cma {
     background-image: url("img/logos/CMA.svg");
     width: 28px; }
-  .league-logo.daily {
+  .league-logo.the-daily {
     background-image: url("img/logos/Daily-compact.svg");
     background-position-y: -3px;
     width: 80px; }
   .league-logo.norman {
     background-image: url("img/logos/Norman.svg");
     width: 30px; }
-  .league-logo.pack10 {
+  .league-logo.okc {
+    background-image: url("");
+    width: 30px; }
+  .league-logo.pack-10 {
     background-image: url("img/logos/Pack10-compact.svg");
     width: 30px; }
-  .league-logo.urb {
+  .league-logo.the-urb {
     background-image: url("img/logos/Urb-compact.svg");
     background-position-y: -1px;
     width: 42px; }
@@ -274,6 +280,15 @@ ul.icon-list {
             font-size: .75em; }
         .carousel-container .carousel-pane .carousel-slider .carousel-item:hover .name {
           color: #2d9beb; }
+
+.article p {
+  font-family: Georgia, serif;
+  font-size: 1.05em;
+  line-height: 1.5;
+  margin: 0 0 16px; }
+  @media (min-width: 768px) {
+    .article p {
+      font-size: 1.15em; } }
 
 /* -------------------------- */
 /* Flex structure ----------- */
@@ -413,11 +428,17 @@ ul.icon-list {
         @media (min-width: 768px) {
           .navbar-default .navbar-nav > li + li {
             border-top: none; } }
+    .navbar-default .navbar-nav > .active > a {
+      color: #fff;
+      background-color: #233e55;
+      transition: all 250ms ease-in-out; }
     @media (min-width: 768px) {
       .navbar-default .navbar-nav:hover > li > a {
         color: rgba(255, 255, 255, 0.4); }
         .navbar-default .navbar-nav:hover > li > a:hover {
           color: #fff; } }
+    .navbar-default .navbar-nav:hover > .active > a {
+      background-color: transparent; }
     .navbar-default .navbar-nav .open a[aria-expanded=true] {
       color: #12202c;
       background-color: transparent;
@@ -455,123 +476,124 @@ ul.icon-list {
           opacity: 0.4; } }
 
 /* -------------------------- */
-/* Homepage ----------------- */
+/* Grid slots --------------- */
 /* -------------------------- */
-#grid-home {
+#grid {
   margin-top: 50px; }
-  #grid-home .announcements-slot {
+  #grid .announcements-slot {
     display: none; }
     @media (min-width: 880px) {
-      #grid-home .announcements-slot {
+      #grid .announcements-slot {
         display: block;
         flex: 2; } }
-    #grid-home .announcements-slot .nested.one {
+    #grid .announcements-slot .nested.one {
       border-bottom: 13px solid #fff; }
-    #grid-home .announcements-slot .nested.two:before {
+    #grid .announcements-slot .nested.two:before {
       background-color: #1a2e3f;
       height: 3px;
       width: 100%;
       top: 2px;
       left: 0;
       z-index: 1; }
-    #grid-home .announcements-slot .inner-wrap {
+    #grid .announcements-slot .inner-wrap {
       padding: 20px; }
-      #grid-home .announcements-slot .inner-wrap p,
-      #grid-home .announcements-slot .inner-wrap ul {
+      #grid .announcements-slot .inner-wrap p,
+      #grid .announcements-slot .inner-wrap ul {
         color: #6f7e8a;
         font-size: .75em;
         line-height: 1.25; }
-      #grid-home .announcements-slot .inner-wrap p {
+      #grid .announcements-slot .inner-wrap p {
         display: none; }
         @media (min-width: 1200px) {
-          #grid-home .announcements-slot .inner-wrap p {
+          #grid .announcements-slot .inner-wrap p {
             display: block; } }
-  #grid-home .lead-slot {
+  #grid .lead-slot {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex; }
     @media (min-width: 768px) {
-      #grid-home .lead-slot {
+      #grid .lead-slot {
         flex: 2; } }
     @media (min-width: 880px) {
-      #grid-home .lead-slot {
+      #grid .lead-slot {
         flex: 7; } }
     @media (min-width: 880px) {
-      #grid-home .lead-slot .inner-wrap {
+      #grid .lead-slot .inner-wrap {
         padding: 30px; } }
-    #grid-home .lead-slot a {
+    #grid .lead-slot a {
       display: block; }
-    #grid-home .lead-slot h1 {
+    #grid .lead-slot h1 {
       color: #fff;
       font-size: 1.875em;
+      font-weight: 600;
       margin: 0 0 15px;
       text-shadow: 1px 1px 2px rgba(18, 32, 44, 0.5);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale; }
       @media (min-width: 768px) {
-        #grid-home .lead-slot h1 {
+        #grid .lead-slot h1 {
           font-size: 3em; } }
       @media (min-width: 992px) {
-        #grid-home .lead-slot h1 {
+        #grid .lead-slot h1 {
           font-size: 3.625em; } }
       @media (min-width: 1200px) {
-        #grid-home .lead-slot h1 {
+        #grid .lead-slot h1 {
           font-size: 4em; } }
     @media (min-width: 768px) {
-      #grid-home .lead-slot .btn-default {
+      #grid .lead-slot .btn-default {
         background-color: transparent;
         border-color: rgba(255, 255, 255, 0.9);
         color: rgba(255, 255, 255, 0.9);
         margin: 0 0 60px; } }
-    #grid-home .lead-slot:hover .bg-image:after {
+    #grid .lead-slot:hover .bg-image:after {
       opacity: .92; }
-    #grid-home .lead-slot:hover .btn-default {
+    #grid .lead-slot:hover .btn-default {
       background-color: #137cc8; }
       @media (min-width: 768px) {
-        #grid-home .lead-slot:hover .btn-default {
+        #grid .lead-slot:hover .btn-default {
           border-color: rgba(26, 46, 63, 0.18);
           color: white; }
-          #grid-home .lead-slot:hover .btn-default .read-more {
+          #grid .lead-slot:hover .btn-default .read-more {
             padding: 10px 14px; }
-            #grid-home .lead-slot:hover .btn-default .read-more .glyphicon {
+            #grid .lead-slot:hover .btn-default .read-more .glyphicon {
               opacity: 1;
               -webkit-transform: translateX(2px);
               transform: translateX(2px); } }
-      #grid-home .lead-slot:hover .btn-default:hover {
+      #grid .lead-slot:hover .btn-default:hover {
         background-color: #2d9beb; }
-  #grid-home .twitter-slot {
+  #grid .twitter-slot {
     display: none; }
     @media (min-width: 768px) {
-      #grid-home .twitter-slot {
+      #grid .twitter-slot {
         display: block;
         flex: 1;
         min-height: 522px; } }
     @media (min-width: 880px) {
-      #grid-home .twitter-slot {
+      #grid .twitter-slot {
         flex: 3; } }
-    #grid-home .twitter-slot .twitter-timeline {
+    #grid .twitter-slot .twitter-timeline {
       display: none; }
-  #grid-home .article-slot .sponsored {
+  #grid .article-slot .sponsored {
     display: none; }
     @media (min-width: 768px) {
-      #grid-home .article-slot .sponsored {
+      #grid .article-slot .sponsored {
         display: block;
         height: 34px; } }
-    #grid-home .article-slot .sponsored span {
+    #grid .article-slot .sponsored span {
       display: inline-block;
       color: #6f7e8a;
       font-family: "Roboto Condensed", "Roboto", sans-serif;
       font-size: 0.65em;
       text-transform: uppercase; }
-    #grid-home .article-slot .sponsored .league-logo {
+    #grid .article-slot .sponsored .league-logo {
       display: inline-block;
       margin: -1px 0 0 1px;
       vertical-align: middle; }
-  #grid-home .article-slot .bg-image {
+  #grid .article-slot .bg-image {
     float: left; }
-  #grid-home .article-slot h2 {
+  #grid .article-slot h2 {
     color: #12202c;
     float: none;
     font-size: 1.2em;
@@ -579,19 +601,19 @@ ul.icon-list {
     margin: 0 0 0 85px;
     transition: all 250ms ease-in-out; }
     @media (min-width: 768px) {
-      #grid-home .article-slot h2 {
+      #grid .article-slot h2 {
         font-size: 1.5em;
         font-weight: 500;
         margin: 0 0 8px; } }
-  #grid-home .article-slot .slot-image {
+  #grid .article-slot .slot-image {
     display: none; }
     @media (min-width: 768px) {
-      #grid-home .article-slot .slot-image {
+      #grid .article-slot .slot-image {
         display: block;
         margin: 0 0 8px;
         overflow: auto;
         position: relative; }
-        #grid-home .article-slot .slot-image:before {
+        #grid .article-slot .slot-image:before {
           content: '';
           position: absolute;
           top: 0;
@@ -602,22 +624,28 @@ ul.icon-list {
           -moz-box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
           box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
           transition: all 250ms ease-in-out; } }
-  #grid-home .article-slot p {
+  #grid .article-slot p {
     display: none; }
     @media (min-width: 768px) {
-      #grid-home .article-slot p {
+      #grid .article-slot p {
         display: block;
         font-size: .825em;
         color: #6f7e8a;
         margin: 0; } }
-  #grid-home .article-slot a.link-item {
+  #grid .article-slot a.link-item {
     display: block; }
-    #grid-home .article-slot a.link-item:hover h2 {
+    #grid .article-slot a.link-item:hover h2 {
       color: #2d9beb; }
-    #grid-home .article-slot a.link-item:hover .slot-image:before {
+    #grid .article-slot a.link-item:hover .slot-image:before {
       -webkit-box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.85);
       -moz-box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.85);
       box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.85); }
-  #grid-home .friends-slot .kicker {
+  #grid .friends-slot .kicker {
     font-size: 1.15em;
     text-align: center; }
+  @media (min-width: 768px) {
+    #grid .primary-slot {
+      flex: 9; } }
+  @media (min-width: 768px) {
+    #grid .sidebar-slot {
+      flex: 3; } }

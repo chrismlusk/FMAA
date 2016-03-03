@@ -355,6 +355,7 @@ add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comment
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
 add_action('init', 'friend_post_type'); // Add Friend Post Type
+add_action('init', 'conference_taxonomy', 0); // Add Conference taxonomy
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
 
@@ -402,14 +403,12 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 
 
 /*------------------------------------*\
-	Creating Friends types
+	Custom Post Types
 \*------------------------------------*/
 
 // Create Friends custom post type
 function friend_post_type()
 {
-    // register_taxonomy_for_object_type('category', 'friends');
-    // register_taxonomy_for_object_type('post_tag', 'friends');
     register_post_type('friends',
         array(
         'labels' => array(
@@ -427,13 +426,14 @@ function friend_post_type()
             'parent_item_colon' => ''
         ),
         'public' => true,
-        'hierarchical' => true,
+        'hierarchical' => false,
+        'menu_position' => 20,
         'has_archive' => false,
         'rewrite' => false,
         'supports' => array(
             'title',
             'editor',
-            'thumbnail'
+            'page-attributes'
         ),
         'can_export' => true,
         // 'taxonomies' => array(
@@ -443,6 +443,31 @@ function friend_post_type()
     ));
 }
 
+// Create 'conferences' taxonomy
+function conference_taxonomy()
+{
+    register_taxonomy('conference', 'friends',
+        array(
+        'labels' => array(
+            'name' => __('Conferences', 'conferences'),
+            'singular_name' => __('Conference', 'conferences'),
+            'search_items' => __('Search Conference', 'conferences'),
+            'all_items' => __('All Conferences'),
+            'parent_item' => __(''),
+            'parent_item_colon' => __(''),
+            'edit_item' => __('Edit Conference', 'conferences'),
+            'update_item' => __('Update Conference', 'conferences'),
+            'add_new_item' => __('Add New Conference', 'conferences'),
+            'new_item_name' => __('New Conference Name')
+        ),
+        'public' => true,
+        'show_ui' => true,
+        'show_in_nav_menus' => true,
+        'hierarchical' => true,
+        'query_var' => true,
+        'rewrite' => false
+    ));
+}
 
 /*------------------------------------*\
 	ShortCode Functions
