@@ -62,6 +62,84 @@ if (function_exists('add_theme_support'))
 	Functions
 \*------------------------------------*/
 
+// Countdown to event
+function event_countdown( $var )
+{
+    $remaining = strtotime($var) - time() + 18000;
+    $days = floor($remaining / 86400);
+    $hours = floor(($remaining % 86400) / 3600);
+
+    // check if word should be singular
+    if ( $days == 1 ) {
+        $days = $days . ' day';
+    }
+    else {
+        $days = $days . ' days';
+    }
+    if ( $hours == 1 ) {
+        $hours = $hours . ' hour';
+    }
+    else {
+        $hours = $hours . ' hours';
+    }
+
+    // don't print days or hours if 0
+    if ( $days == 0 ) {
+        $countdown = $hours . ' left';
+    }
+    elseif ( $hours == 0 ) {
+        $countdown = $days . ' left';
+    }
+    else {
+        $countdown = $days . ', ' . $hours . ' left';
+    }
+    return $countdown;
+}
+
+// Sponsored article logos
+function sponsored_logo( $sponsored )
+{
+    $big8 = 'big-8';
+    $catholic7 = 'catholic-7';
+    $cma = 'cma';
+    $the_daily = 'the-daily';
+    $fmaa = 'fmaa';
+    $norman = 'norman';
+    $okc = 'okc';
+    $pack_10 = 'pack-10';
+    $the_urb = 'the-urb';
+
+    if( $sponsored == $big8 ) {
+        $logo = $big8;
+    }
+    elseif( $sponsored == $catholic7 ) {
+        $logo = $catholic7;
+    }
+    elseif( $sponsored == $cma ) {
+        $logo = $cma;
+    }
+    elseif( $sponsored == $the_daily ) {
+        $logo = $the_daily;
+    }
+    elseif( $sponsored == $norman ) {
+        $logo = $norman;
+    }
+    elseif( $sponsored == $okc ) {
+        $logo = $okc;
+    }
+    elseif( $sponsored == $pack_10 ) {
+        $logo = $pack_10;
+    }
+    elseif( $sponsored == $the_urb ) {
+        $logo = $the_urb;
+    }
+    else {
+        $logo = $fmaa;
+    }
+    
+    return $logo;
+}
+
 // HTML5 Blank navigation
 function html5blank_nav()
 {

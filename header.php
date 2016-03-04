@@ -31,42 +31,41 @@
 </head>
 <body <?php body_class(); ?>>
 
-   <!-- wrapper -->
-   <div class="wrapper">
+   <!-- header -->
+   <header role="banner">
 
-      <!-- header -->
-      <header role="banner">
+      <!-- nav -->
+      <nav class="navbar navbar-default navbar-fixed-top navbar-topic-page" role="navigation">
+         <div class="container-fluid">
 
-         <!-- nav -->
-         <nav class="navbar navbar-default navbar-fixed-top navbar-topic-page" role="navigation">
-            <div class="container-fluid">
-
-               <!-- logo -->
-               <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                     <span class="sr-only">Toggle navigation</span>
-                     <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand" href="<?php echo home_url(); ?>">
-                     <img alt="Friendship Madness logo" src="<?php echo get_template_directory_uri(); ?>/img/logos/FMAA.svg" />
-                  </a>
-               </div>
-               <!-- /logo -->
-
-               <!-- navbar -->
-               <div id="navbar" class="navbar-collapse collapse">
-                  <?php html5blank_nav(); ?>
-                  <div class="navbar-right">
-                     <img alt="Tagline" src="<?php echo get_template_directory_uri(); ?>/img/tagline.svg" />
-                 </div>
-               </div>
-               <!-- /navbar -->
-
+            <!-- logo -->
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="<?php echo home_url(); ?>">
+                  <img alt="Friendship Madness logo" src="<?php echo get_template_directory_uri(); ?>/img/logos/FMAA-nav.svg" />
+               </a>
             </div>
-         </nav>
-         <!-- /nav -->
+            <!-- /logo -->
 
-      </header>
-      <!-- /header -->
+            <!-- navbar -->
+            <div id="navbar" class="navbar-collapse collapse">
+
+               <?php html5blank_nav(); ?>
+               
+               <div class="navbar-right">
+                  <img alt="Tagline" src="<?php echo get_template_directory_uri(); ?>/img/tagline.svg" />
+              </div>
+            </div>
+            <!-- /navbar -->
+
+         </div>
+      </nav>
+      <!-- /nav -->
+
+   </header>
+   <!-- /header -->

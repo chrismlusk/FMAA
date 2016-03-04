@@ -1,41 +1,38 @@
-<?php get_header(); ?>
+   <?php get_header(); ?>
 
-<main id="grid" role="main">
+   <main id="grid" role="main">
 
-	<!-- section -->
-	<section id="" class="flex-container">
-		<div class="flex-item primary-slot">
-			<div class="inner-wrap">
-				<h1><?php the_title(); ?></h1>
+      <!-- section -->
+      <section id="default" class="flex-container">
+         <div class="flex-item primary-slot">
+            <div class="inner-wrap">
 
-				<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+               <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-					<!-- article -->
-	                <article id="post-<?php the_ID(); ?>" class="article">
+                  <!-- article -->
+                  <article id="post-<?php the_ID(); ?>" class="article">
 
-						<?php the_content(); ?>
+                  <h1><?php the_title(); ?></h1>
 
-						<?php edit_post_link(); ?>
+                  <?php the_content(); ?>
 
-					</article>
+                  <?php edit_post_link(); ?>
 
-				<?php endwhile; ?>
+                  </article>
 
-            	<?php else: ?>
+               <?php endwhile; ?>
 
-            		<h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
+               <?php else: ?>
 
-            	<?php endif; ?>
+                  <h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
 
-			</div>
-		</div>
-		<div class="flex-item sidebar-slot">
-			<div class="inner-wrap">
-				<?php get_sidebar(); ?>
-			</div>
-		</div>
-	</section>
+               <?php endif; ?>
 
-</main>
+            </div>
+         </div>
+         <div class="flex-item sidebar-slot">
+            <?php get_sidebar(); ?>
+         </div>
+      </section>
 
-<?php get_footer(); ?>
+      <?php get_footer(); ?>
