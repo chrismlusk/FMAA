@@ -140,6 +140,13 @@ function sponsored_logo( $sponsored )
     return $logo;
 }
 
+// Get Reading Time
+function reading_time() {
+    $content = get_post_field( 'post_content', $post->ID );
+    $word_count = str_word_count( strip_tags( $content ) );
+    return round($word_count / 225);
+}
+
 // HTML5 Blank navigation
 function html5blank_nav()
 {

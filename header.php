@@ -11,7 +11,12 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="description" content="<?php bloginfo('description'); ?>">
-   <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700,700italic?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+
+   <meta name="twitter:widgets:theme" content="light">
+   <meta name="twitter:widgets:link-color" content="#137cc8">
+   <meta name="twitter:widgets:border-color" content="#e2e2e2">
+
+   <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700,700italic?family=Roboto+Condensed?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
    <?php wp_head(); ?>

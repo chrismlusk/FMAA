@@ -18,7 +18,7 @@ $posts = get_posts( array(
       <section id="friends" class="flex-container">
          <div class="flex-item">
 
-            <div class="inner-wrap">
+            <div class="inner-wrap article" style="padding-bottom: 0;">
 
                <h1><?php the_title(); ?></h1>
             
@@ -26,7 +26,7 @@ $posts = get_posts( array(
 
             </div><!-- /inner-wrap for page title -->
 
-            <div class="flex-container">
+            <div class="flex-container article">
                
                <?php foreach( $posts as $post ):
 
@@ -117,7 +117,7 @@ $posts = get_posts( array(
                         </div>
                      </div>
 
-                  <?php endif; ?>
+                  <?php endif; // if friend is active ?>
 
                <?php endforeach; ?>
 

@@ -7,7 +7,7 @@
          <!-- section -->
          <section id="" class="flex-container">
 
-            <div class="flex-item full-headline-slot">
+            <div class="flex-item full-width-headline-slot">
                <div class="inner-wrap">
 
                   <!-- article header -->
@@ -19,7 +19,10 @@
                      <h1><?php the_title(); ?></h1>
                      <h3><?php the_field('subhead'); ?></h3>
                      <div class="details">
+                        <span class="hidden-xs">By <?php the_author(); ?></span>
                         <span>Published on <?php the_time('F j, Y'); ?></span>
+                        <span class="hidden-xs"><?php echo reading_time(); ?> min read</span>
+                        <span><?php edit_post_link(); ?></span>
                      </div>
                   </header>
 
