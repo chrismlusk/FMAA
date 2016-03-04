@@ -53,7 +53,7 @@
             <!-- /logo -->
 
             <!-- navbar -->
-            <div id="navbar" class="navbar-collapse collapse">
+            <div id="navbar" class="collapse navbar-collapse">
 
                <?php html5blank_nav(); ?>
                

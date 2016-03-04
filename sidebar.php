@@ -35,7 +35,7 @@
          <a class="twitter-timeline" 
             href="https://twitter.com/FriendMadness" 
             data-width="100%" 
-            data-widget-id="699703972844740608" 
+            data-widget-id="705587133126451201" 
             data-chrome="transparent nofooter"
             >Tweets by @FriendMadness</a>
       </div>

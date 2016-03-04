@@ -1,19 +1,23 @@
-<?php get_header(); ?>
+   <?php get_header(); ?>
 
-	<main role="main">
-		<!-- section -->
-		<section>
+   <main id="grid" role="main">
 
-			<h1><?php _e( 'Tag Archive: ', 'html5blank' ); echo single_tag_title('', false); ?></h1>
+      <!-- section -->
+      <section id="default" class="flex-container">
+         <div class="flex-item primary-slot">
+            <div class="inner-wrap">
 
-			<?php get_template_part('loop'); ?>
+               <h1><?php _e( 'Tag Archive: ', 'html5blank' ); echo single_tag_title('', false); ?></h1>
 
-			<?php get_template_part('pagination'); ?>
+               <?php get_template_part('loop'); ?>
 
-		</section>
-		<!-- /section -->
-	</main>
+               <?php get_template_part('pagination'); ?>
 
-<?php get_sidebar(); ?>
+            </div>
+         </div>
+         <div class="flex-item sidebar-slot">
+            <?php get_sidebar(); ?>
+         </div>
+      </section>
 
-<?php get_footer(); ?>
+      <?php get_footer(); ?>

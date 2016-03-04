@@ -59,6 +59,14 @@ $grid-pad:           5px;
    -moz-box-shadow: inset 0 0 50px $val;
    box-shadow: inset 0 0 50px $val;
 }
+@mixin box-shadow {
+   -webkit-box-shadow: 0 0 4px rgba(0,0,0,.14),
+               0 4px 8px rgba(0,0,0,.28);
+   -moz-box-shadow: 0 0 4px rgba(0,0,0,.14),
+               0 4px 8px rgba(0,0,0,.28);
+   box-shadow: 0 0 4px rgba(0,0,0,.14),
+               0 4px 8px rgba(0,0,0,.28);
+}
 
 
 /* -------------------------- */
@@ -157,7 +165,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 img {
    display: block;
-   max-width: 100%;
+   width: 100%;
    height: auto;
 }
 .kicker {
@@ -288,6 +296,22 @@ ul.icon-list {
       }
    }
 }
+.sponsored {
+   display: block;
+   height: 34px;
+   span {
+      display: inline-block;
+      color: $gray-text;
+      font-family: $font-sans-cond;
+      font-size: 0.65em;
+      text-transform: uppercase;
+   }
+   .league-logo {
+      display: inline-block;
+      margin: -1px 0 0 1px;
+      vertical-align: middle;
+   }
+}
 .league-logo {
    background: url('') no-repeat center center;
    background-size: contain;
@@ -339,13 +363,13 @@ ul.icon-list {
    img {
       border-radius: 50%;
       margin: 0 auto 8px;
-      width: 180px;
+      max-width: 180px;
       height: auto;
       @media #{$break-lg} {
-         width: 200px;
+         max-width: 200px;
       }
       @media #{$break-xl} {
-         width: 240px;
+         max-width: 240px;
       }
    }
    .name {
@@ -447,6 +471,12 @@ ul.icon-list {
    }
    @media #{$break-lg} {
       margin: 30px;
+   }
+   @media #{$break-xl} {
+      margin: 30px 60px;
+   }
+   figure {
+      margin: 0 0 21px;
    }
    h1 {
       font-size: 2.2em;
@@ -582,9 +612,11 @@ ul.icon-list {
             border: 0;
             padding: 0;
             &.nested {
-               border-bottom: 13px solid #fff;
-               padding: 0;
-               margin: -5px;
+               @media #{$break-md} {
+                  border-bottom: 13px solid #fff;
+                  padding: 0;
+                  margin: -5px;
+               }
                &:before {
                   background-color: $primary;
                   height: 3px;
@@ -598,14 +630,20 @@ ul.icon-list {
                      display: none;
                   }
                   .inner-wrap {
-                     padding: 20px;
+                     padding: 15px;
+                     @media #{$break-md} {
+                        padding: 20px;
+                     }
                   }
                }
                &:last-child {
                   border: 0;
                }
                .inner-wrap {
-                  padding: 25px 20px 20px;
+                  padding: 20px 15px 15px;
+                  @media #{$break-md} {
+                     padding: 25px 20px 20px;
+                  }
                }
             }
          }
@@ -631,6 +669,7 @@ ul.icon-list {
 .navbar-default {
    background-color: $primary;
    border: none;
+   @include box-shadow;
    .navbar-toggle {
       float: left;
       margin: 0;
@@ -701,11 +740,12 @@ ul.icon-list {
                font-size: 1em;
                padding: 15px;
             }
-            &:focus {
-               color: $link;
-            }
+            &:focus,
             &:hover {
-               color: $link;
+               color: $link-hover;
+               @media #{$break-md} {
+                  color: #fff;
+               }
             }
          }
          &+li {
@@ -716,30 +756,32 @@ ul.icon-list {
          }
       }
       &>.active>a {
-         color: #fff;
-         background-color: lighten($primary, 6%);
+         color: $black-text;
+         background-color: transparent;
          @include transition(all);
+         @media #{$break-md} {
+            color: #fff;
+         }
+         &:focus,
+         &:hover {
+            color: $link-hover;
+            background-color: transparent;
+            @media #{$break-md} {
+               color: #fff;
+            }
+         }
       }
       &:hover {
          &>li {
             &>a {
                @media #{$break-md} {
                   color: rgba(#fff, .4);
+                  &:focus,
                   &:hover {
                      color: #fff;
                   }
                }
             }
-         }
-         &>.active>a {
-            background-color: transparent;
-         }
-      }
-      .open {
-         a[aria-expanded=true] {
-            color: $black-text; // change this!
-            background-color: transparent;
-            border-color: $gray-text; // change this!
          }
       }
       .dropdown {
@@ -872,29 +914,12 @@ ul.icon-list {
       .twitter-timeline {
          display: none;
       }
-      .timeline-viewport {
-         overflow-y: scroll;
-         -webkit-overflow-scrolling: touch;
-      }
    }
    .sponsored-article-slot {
       .sponsored {
          display: none;
          @media #{$break-md} {
             display: block;
-            height: 34px;
-         }
-         span {
-            display: inline-block;
-            color: $gray-text;
-            font-family: $font-sans-cond;
-            font-size: 0.65em;
-            text-transform: uppercase;
-         }
-         .league-logo {
-            display: inline-block;
-            margin: -1px 0 0 1px;
-            vertical-align: middle;
          }
       }
       .bg-image {
@@ -961,8 +986,56 @@ ul.icon-list {
          text-align: center;
       }
    }
-
-   // Default page slots
+   .full-headline-slot {
+      .article {
+         .sponsored {
+            span {
+               @media #{$break-md} {
+                  font-size: .7em;
+               }
+               @media #{$break-lg} {
+                  font-size: .75em;
+               }
+            }
+         }
+         h1 {
+            margin: 0 0 12px;
+            @media #{$break-md} {
+               font-size: 2.75em;
+            }
+            @media #{$break-lg} {
+               font-size: 3.25em;
+            }
+            @media #{$break-xl} {
+               font-size: 3.8em;
+            }
+         }
+         h3 {
+            color: $gray-text;
+            font-family: $font-sans;
+            font-size: 1.2em;
+            font-weight: 300;
+            line-height: 1.25;
+            margin-bottom: 12px;
+            @media #{$break-md} {
+               font-size: 1.5em;
+            }
+            @media #{$break-lg} {
+               font-size: 1.7em;
+            }
+            @media #{$break-xl} {
+               font-size: 1.85em;
+            }
+         }
+         .details {
+            color: $gray-text-light;
+            font-size: .8em;
+            @media #{$break-md} {
+               font-size: .85em;
+            }
+         }
+      }
+   }
    .primary-slot {
       @media #{$break-md} {
          flex: 9;
@@ -973,8 +1046,6 @@ ul.icon-list {
          flex: 3;
       }
    }
-
-   // Footer slot
    .footer-slot {
       color: $gray-text-light;
       font-size: 0.64em;
