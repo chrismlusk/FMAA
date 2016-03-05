@@ -1,24 +1,20 @@
-<?php get_header(); ?>
+   <?php get_header(); ?>
 
-	<main role="main">
-		<!-- section -->
-		<section>
+   <main id="grid" role="main">
 
-			<!-- article -->
-			<article id="post-404">
+      <!-- section -->
+      <section id="default" class="flex-container">
+         <div class="flex-item">
+            <div class="inner-wrap">
 
-				<h1><?php _e( 'Page not found', 'html5blank' ); ?></h1>
-				<h2>
-					<a href="<?php echo home_url(); ?>"><?php _e( 'Return home?', 'html5blank' ); ?></a>
-				</h2>
+               <article class="article drunkbernardo">
+                  <h1>Whoops!</h1>
+                  <span><a href="<?php echo home_url(); ?>">Go home, Friend. You're drunk.</a></span>
+                  <img src="<?php echo get_template_directory_uri(); ?>/img/drunkbernardo.jpg" />
+               </article>
 
-			</article>
-			<!-- /article -->
+            </div>
+         </div>
+      </section>
 
-		</section>
-		<!-- /section -->
-	</main>
-
-<?php get_sidebar(); ?>
-
-<?php get_footer(); ?>
+      <?php get_footer(); ?>
