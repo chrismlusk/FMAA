@@ -1,73 +1,74 @@
-<?php get_header(); ?>
+   <?php get_header(); ?>
 
-	<main role="main">
-		<!-- section -->
-		<section>
+   <main id="grid" role="main">
 
-		<?php if (have_posts()): the_post(); ?>
+      <!-- section -->
+      <section id="default" class="flex-container">
+         <div class="flex-item primary-slot">
+            <div class="inner-wrap">
 
-			<h1><?php _e( 'Author Archives for ', 'html5blank' ); echo get_the_author(); ?></h1>
+      		<?php if (have_posts()): the_post(); ?>
 
-		<?php if ( get_the_author_meta('description')) : ?>
+      			<h1><?php _e( 'Author Archives for ', 'html5blank' ); echo get_the_author(); ?></h1>
 
-		<?php echo get_avatar(get_the_author_meta('user_email')); ?>
+      		<?php if ( get_the_author_meta('description')) : ?>
 
-			<h2><?php _e( 'About ', 'html5blank' ); echo get_the_author() ; ?></h2>
+      		<?php echo get_avatar(get_the_author_meta('user_email')); ?>
 
-			<?php echo wpautop( get_the_author_meta('description') ); ?>
+      			<h2><?php _e( 'About ', 'html5blank' ); echo get_the_author() ; ?></h2>
 
-		<?php endif; ?>
+      			<?php echo wpautop( get_the_author_meta('description') ); ?>
 
-		<?php rewind_posts(); while (have_posts()) : the_post(); ?>
+      		<?php endif; ?>
 
-			<!-- article -->
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+      		<?php rewind_posts(); while (have_posts()) : the_post(); ?>
 
-				<!-- post thumbnail -->
-				<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
-					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-						<?php the_post_thumbnail(array(120,120)); // Declare pixel size you need inside the array ?>
-					</a>
-				<?php endif; ?>
-				<!-- /post thumbnail -->
+      			<!-- article -->
+      			<article id="post-<?php the_ID(); ?>" class="article">
 
-				<!-- post title -->
-				<h2>
-					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-				</h2>
-				<!-- /Post title -->
+      				<!-- post thumbnail -->
+      				<?php if ( has_post_thumbnail() ): ?>
+      					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+      						<?php the_post_thumbnail(array(120,120)); // Declare pixel size you need inside the array ?>
+      					</a>
+      				<?php endif; ?>
+      				<!-- /post thumbnail -->
 
-				<!-- post details -->
-				<span class="date"><?php the_time('F j, Y'); ?> <?php the_time('g:i a'); ?></span>
-				<span class="author"><?php _e( 'Published by', 'html5blank' ); ?> <?php the_author_posts_link(); ?></span>
-				<span class="comments"><?php comments_popup_link( __( 'Leave your thoughts', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' )); ?></span>
-				<!-- /post details -->
+      				<!-- post title -->
+      				<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+      				<!-- /Post title -->
 
-				<?php html5wp_excerpt('html5wp_index'); // Build your custom callback length in functions.php ?>
+      				<!-- post details -->
+                  <div class="post-meta">
+                     <span class="hidden-xs">By <?php the_author(); ?></span>
+                     <span>Published on <?php the_time('F j, Y'); ?></span>
+                     <span><?php edit_post_link(); ?></span>
+                  </div>
+      				<!-- /post details -->
 
-				<br class="clear">
+      				<?php html5wp_excerpt('html5wp_index'); // Build your custom callback length in functions.php ?>
 
-				<?php edit_post_link(); ?>
+      			</article>
+      			<!-- /article -->
 
-			</article>
-			<!-- /article -->
+      		<?php endwhile; ?>
 
-		<?php endwhile; ?>
+      		<?php else: ?>
 
-		<?php else: ?>
+      			<!-- article -->
+      			<article class="article">
 
-			<!-- article -->
-			<article>
+      				<h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
 
-				<h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
+      			</article>
+      			<!-- /article -->
 
-			</article>
-			<!-- /article -->
+      		<?php endif; ?>
 
-		<?php endif; ?>
-
-			<?php get_template_part('pagination'); ?>
-
+      			<?php get_template_part('pagination'); ?>
+               
+            </div>
+         </div>
 		</section>
 		<!-- /section -->
 	</main>
