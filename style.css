@@ -290,6 +290,46 @@ ul.icon-list {
     .pager li > a:hover {
       background-color: #2d9beb; }
 
+.league-logo {
+  background: url("") no-repeat center center;
+  background-size: contain; }
+  .league-logo.big-8 {
+    background-image: url("img/logos/Big8.svg"); }
+    .league-logo.big-8.compact {
+      background-image: url("img/logos/Big8-compact.svg"); }
+  .league-logo.catholic-7 {
+    background-image: url("img/logos/Catholic7.svg"); }
+    .league-logo.catholic-7.compact {
+      background-image: url("img/logos/Catholic7-compact.svg"); }
+  .league-logo.cma {
+    background-image: url("img/logos/CMA.svg"); }
+  .league-logo.the-daily {
+    background-image: url("img/logos/Daily.svg"); }
+    .league-logo.the-daily.compact {
+      background-image: url("img/logos/Daily-compact.svg"); }
+    .league-logo.the-daily.inverse {
+      background-image: url("img/logos/Daily-inverse.svg"); }
+  .league-logo.fmaa {
+    background-image: url("img/logos/FMAA.svg"); }
+    .league-logo.fmaa.compact {
+      background-image: url("img/logos/FMAA-compact.svg"); }
+  .league-logo.norman {
+    background-image: url("img/logos/Norman.svg"); }
+  .league-logo.okc {
+    background-image: url("img/logos/OKC.svg"); }
+    .league-logo.okc.compact {
+      background-image: url("img/logos/OKC-compact.svg"); }
+  .league-logo.pack-10 {
+    background-image: url("img/logos/Pack10.svg"); }
+    .league-logo.pack-10.compact {
+      background-image: url("img/logos/Pack10-compact.svg"); }
+  .league-logo.the-urb {
+    background-image: url("img/logos/Urb.svg"); }
+    .league-logo.the-urb.compact {
+      background-image: url("img/logos/Urb-compact.svg"); }
+    .league-logo.the-urb.inverse {
+      background-image: url("img/logos/Urb-inverse.svg"); }
+
 .sponsored {
   display: block;
   height: 34px; }
@@ -301,43 +341,30 @@ ul.icon-list {
     text-transform: uppercase; }
   .sponsored .league-logo {
     display: inline-block;
+    height: 28px;
     margin: -1px 0 0 1px;
     vertical-align: middle; }
-
-.league-logo {
-  background: url("") no-repeat center center;
-  background-size: contain;
-  height: 28px; }
-  .league-logo.big-8 {
-    background-image: url("img/logos/Big8-compact.svg");
-    width: 42px; }
-  .league-logo.catholic-7 {
-    background-image: url("img/logos/Catholic7.svg");
-    background-position-y: 9px;
-    width: 80px; }
-  .league-logo.cma {
-    background-image: url("img/logos/CMA.svg");
-    width: 28px; }
-  .league-logo.the-daily {
-    background-image: url("img/logos/Daily-compact.svg");
-    background-position-y: -3px;
-    width: 80px; }
-  .league-logo.fmaa {
-    background-image: url("img/logos/FMAA-compact.svg");
-    width: 54px; }
-  .league-logo.norman {
-    background-image: url("img/logos/Norman.svg");
-    width: 30px; }
-  .league-logo.okc {
-    background-image: url("img/logos/OKC-compact.svg");
-    width: 50px; }
-  .league-logo.pack-10 {
-    background-image: url("img/logos/Pack10-compact.svg");
-    width: 30px; }
-  .league-logo.the-urb {
-    background-image: url("img/logos/Urb-compact.svg");
-    background-position-y: -1px;
-    width: 42px; }
+    .sponsored .league-logo.big-8 {
+      width: 42px; }
+    .sponsored .league-logo.catholic-7 {
+      background-position-y: 9px;
+      width: 80px; }
+    .sponsored .league-logo.cma {
+      width: 28px; }
+    .sponsored .league-logo.the-daily {
+      background-position-y: -3px;
+      width: 80px; }
+    .sponsored .league-logo.fmaa {
+      width: 54px; }
+    .sponsored .league-logo.norman {
+      width: 30px; }
+    .sponsored .league-logo.okc {
+      width: 50px; }
+    .sponsored .league-logo.pack-10 {
+      width: 30px; }
+    .sponsored .league-logo.the-urb {
+      background-position-y: -1px;
+      width: 42px; }
 
 .friend-wrapper {
   color: #6f7e8a;
@@ -793,9 +820,17 @@ ul.icon-list {
     display: flex; }
     @media (min-width: 768px) {
       #grid .lead-slot {
+        -webkit-box-flex: 2;
+        -moz-box-flex: 2;
+        -webkit-flex: 2;
+        -ms-flex: 2;
         flex: 2; } }
     @media (min-width: 880px) {
       #grid .lead-slot {
+        -webkit-box-flex: 7;
+        -moz-box-flex: 7;
+        -webkit-flex: 7;
+        -ms-flex: 7;
         flex: 7; } }
     @media (min-width: 880px) {
       #grid .lead-slot .inner-wrap {
@@ -902,6 +937,23 @@ ul.icon-list {
   #grid .friends-slot .kicker {
     font-size: 1.15em;
     text-align: center; }
+  #grid .conference-slot > .flex-container {
+    align-items: center;
+    padding: 7.5px; }
+    #grid .conference-slot > .flex-container .flex-item {
+      -webkit-box-flex: 50%;
+      -moz-box-flex: 50%;
+      -webkit-flex: 50%;
+      -ms-flex: 50%;
+      flex: 50%; }
+  #grid .conference-slot figure {
+    background-color: #fff;
+    border: 1px solid #e2e2e2;
+    padding: 15px;
+    margin: 7.5px;
+    height: 200px; }
+    #grid .conference-slot figure img {
+      max-height: 100%; }
   @media (min-width: 768px) {
     #grid .full-width-headline-slot .article .sponsored span {
       font-size: .7em; } }
@@ -939,9 +991,17 @@ ul.icon-list {
         font-size: 1.85em; } }
   @media (min-width: 768px) {
     #grid .primary-slot {
+      -webkit-box-flex: 9;
+      -moz-box-flex: 9;
+      -webkit-flex: 9;
+      -ms-flex: 9;
       flex: 9; } }
   @media (min-width: 768px) {
     #grid .sidebar-slot {
+      -webkit-box-flex: 3;
+      -moz-box-flex: 3;
+      -webkit-flex: 3;
+      -ms-flex: 3;
       flex: 3; } }
   #grid .footer-slot {
     color: #a1abb4;
@@ -955,8 +1015,8 @@ ul.icon-list {
       background: url("img/logos/FMAA.svg") center center no-repeat;
       background-size: contain;
       margin: 0 auto;
-      width: 140px;
-      height: 140px; }
+      width: 160px;
+      height: 160px; }
     #grid .footer-slot .footer-links {
       list-style: none;
       margin: 20px 0;
@@ -982,6 +1042,10 @@ ul.icon-list {
   @media (min-width: 880px) {
     #home-primary .announcements-slot {
       display: block;
+      -webkit-box-flex: 2;
+      -moz-box-flex: 2;
+      -webkit-flex: 2;
+      -ms-flex: 2;
       flex: 2; } }
   #home-primary .announcements-slot p {
     display: none; }
@@ -993,19 +1057,39 @@ ul.icon-list {
   @media (min-width: 768px) {
     #home-primary .twitter-slot {
       display: block;
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      -webkit-flex: 1;
+      -ms-flex: 1;
       flex: 1;
       min-height: 522px; } }
   @media (min-width: 880px) {
     #home-primary .twitter-slot {
+      -webkit-box-flex: 3;
+      -moz-box-flex: 3;
+      -webkit-flex: 3;
+      -ms-flex: 3;
       flex: 3; } }
 
 #friends .friend-wrapper {
+  -webkit-box-flex: 50%;
+  -moz-box-flex: 50%;
+  -webkit-flex: 50%;
+  -ms-flex: 50%;
   flex: 50%; }
   @media (min-width: 480px) {
     #friends .friend-wrapper {
+      -webkit-box-flex: 33.3333%;
+      -moz-box-flex: 33.3333%;
+      -webkit-flex: 33.3333%;
+      -ms-flex: 33.3333%;
       flex: 33.3333%; } }
   @media (min-width: 768px) {
     #friends .friend-wrapper {
+      -webkit-box-flex: 25%;
+      -moz-box-flex: 25%;
+      -webkit-flex: 25%;
+      -ms-flex: 25%;
       flex: 25%; } }
 
 #post-layout p:first-of-type:first-letter {
@@ -1029,3 +1113,14 @@ ul.icon-list {
   line-height: inherit;
   padding: 0;
   font-family: inherit; }
+
+#conferences {
+  background-color: #1a2e3f;
+  color: #fff;
+  padding: 15px;
+  text-align: center; }
+  #conferences figure {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 0 15px; }

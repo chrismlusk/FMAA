@@ -110,7 +110,7 @@ function sponsored_logo( $sponsored )
     $the_urb = 'the-urb';
 
     if( $sponsored == $big8 ) {
-        $logo = $big8;
+        $logo = $big8 . ' compact';
     }
     elseif( $sponsored == $catholic7 ) {
         $logo = $catholic7;
@@ -119,22 +119,22 @@ function sponsored_logo( $sponsored )
         $logo = $cma;
     }
     elseif( $sponsored == $the_daily ) {
-        $logo = $the_daily;
+        $logo = $the_daily . ' compact';
     }
     elseif( $sponsored == $norman ) {
         $logo = $norman;
     }
     elseif( $sponsored == $okc ) {
-        $logo = $okc;
+        $logo = $okc . ' compact';
     }
     elseif( $sponsored == $pack_10 ) {
-        $logo = $pack_10;
+        $logo = $pack_10 . ' compact';
     }
     elseif( $sponsored == $the_urb ) {
-        $logo = $the_urb;
+        $logo = $the_urb . ' compact';
     }
     else {
-        $logo = $fmaa;
+        $logo = $fmaa . ' compact';
     }
     
     return $logo;

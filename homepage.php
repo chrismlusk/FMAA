@@ -122,7 +122,7 @@ get_header(); ?>
          <!-- /twitter slot -->
 
       </section>
-      <!-- /section -->
+      <!-- /primary -->
 
 
       <!-- Articles section -->
@@ -167,7 +167,7 @@ get_header(); ?>
          <?php endif; ?>
 
       </section>
-      <!-- /section -->
+      <!-- /articles -->
 
 
       <!-- Friends section -->
@@ -282,6 +282,6 @@ get_header(); ?>
             </div>
          </div>
       </section>
-      <!-- /meet the friends -->
+      <!-- /friends -->
 
       <?php get_footer(); ?>

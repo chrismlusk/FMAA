@@ -26,6 +26,19 @@
       </footer>
       <!-- /footer -->
 
+      <section id="conferences" class="clearfix">
+        <div class="">
+          <figure class="league-logo big-8 compact"></figure>
+          <figure class="league-logo catholic-7 compact"></figure>
+          <figure class="league-logo cma"></figure>
+          <figure class="league-logo the-daily inverse"></figure>
+          <figure class="league-logo norman"></figure>
+          <figure class="league-logo okc"></figure>
+          <figure class="league-logo pack-10 compact"></figure>
+          <figure class="league-logo the-urb inverse"></figure>
+        </div>
+      </section>
+
    </main>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

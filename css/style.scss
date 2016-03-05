@@ -419,6 +419,66 @@ ul.icon-list {
       }
    }
 }
+.league-logo {
+   background: url('') no-repeat center center;
+   background-size: contain;
+   //height: 28px;
+   &.big-8 {
+      background-image: url('img/logos/Big8.svg');
+      //width: 42px;
+      &.compact {
+         background-image: url('img/logos/Big8-compact.svg');
+      }
+   }
+   &.catholic-7 {
+      background-image: url('img/logos/Catholic7.svg');
+      &.compact {
+         background-image: url('img/logos/Catholic7-compact.svg');
+      }
+   }
+   &.cma {
+      background-image: url('img/logos/CMA.svg');
+   }
+   &.the-daily {
+      background-image: url('img/logos/Daily.svg');
+      &.compact {
+         background-image: url('img/logos/Daily-compact.svg');
+      }
+      &.inverse {
+         background-image: url('img/logos/Daily-inverse.svg');
+      }
+   }
+   &.fmaa {
+      background-image: url('img/logos/FMAA.svg');
+      &.compact {
+         background-image: url('img/logos/FMAA-compact.svg');
+      }
+   }
+   &.norman {
+      background-image: url('img/logos/Norman.svg');
+   }
+   &.okc {
+      background-image: url('img/logos/OKC.svg');
+      &.compact {
+         background-image: url('img/logos/OKC-compact.svg');
+      }
+   }
+   &.pack-10 {
+      background-image: url('img/logos/Pack10.svg');
+      &.compact {
+         background-image: url('img/logos/Pack10-compact.svg');
+      }
+   }
+   &.the-urb {
+      background-image: url('img/logos/Urb.svg');
+      &.compact {
+         background-image: url('img/logos/Urb-compact.svg');
+      }
+      &.inverse {
+         background-image: url('img/logos/Urb-inverse.svg');
+      }
+   }
+}
 .sponsored {
    display: block;
    height: 34px;
@@ -431,52 +491,27 @@ ul.icon-list {
    }
    .league-logo {
       display: inline-block;
+      height: 28px;
       margin: -1px 0 0 1px;
       vertical-align: middle;
-   }
-}
-.league-logo {
-   background: url('') no-repeat center center;
-   background-size: contain;
-   height: 28px;
-   &.big-8 {
-      background-image: url('img/logos/Big8-compact.svg');
-      width: 42px;
-   }
-   &.catholic-7 {
-      background-image: url('img/logos/Catholic7.svg');
-      background-position-y: 9px;
-      width: 80px;
-   }
-   &.cma {
-      background-image: url('img/logos/CMA.svg');
-      width: 28px;
-   }
-   &.the-daily {
-      background-image: url('img/logos/Daily-compact.svg');
-      background-position-y: -3px;
-      width: 80px;
-   }
-   &.fmaa {
-      background-image: url('img/logos/FMAA-compact.svg');
-      width: 54px;
-   }
-   &.norman {
-      background-image: url('img/logos/Norman.svg');
-      width: 30px;
-   }
-   &.okc {
-      background-image: url('img/logos/OKC-compact.svg');
-      width: 50px;
-   }
-   &.pack-10 {
-      background-image: url('img/logos/Pack10-compact.svg');
-      width: 30px;
-   }
-   &.the-urb {
-      background-image: url('img/logos/Urb-compact.svg');
-      background-position-y: -1px;
-      width: 42px;
+      &.big-8 { width: 42px; }
+      &.catholic-7 { // akldfa klsfjaslkfj asldk
+         background-position-y: 9px;
+         width: 80px;
+      }
+      &.cma { width: 28px; }
+      &.the-daily {
+         background-position-y: -3px;
+         width: 80px;
+      }
+      &.fmaa { width: 54px; }
+      &.norman { width: 30px; }
+      &.okc { width: 50px; }
+      &.pack-10 { width: 30px; }
+      &.the-urb {
+         background-position-y: -1px;
+         width: 42px;
+      }
    }
 }
 .friend-wrapper {
@@ -1036,10 +1071,10 @@ ul.icon-list {
       //min-height: 240px; // maybe change this? check it out.
       @include flexbox();
       @media #{$break-md} {
-         flex: 2;
+         @include flex(2);
       }
       @media #{$break-md-lg} {
-         flex: 7;
+         @include flex(7);
       }
       .inner-wrap {
          @media #{$break-md-lg} {
@@ -1176,6 +1211,26 @@ ul.icon-list {
          text-align: center;
       }
    }
+   .conference-slot {
+      >.flex-container {
+         align-items: center;
+         padding: 7.5px;
+         //border: 1px solid red;
+         .flex-item {
+            @include flex(50%);
+         }
+      }
+      figure {
+         background-color: #fff;
+         border: 1px solid $gray-border;
+         padding: 15px;
+         margin: 7.5px;
+         height: 200px;
+         img {
+            max-height: 100%;
+         }
+      }
+   }
    .full-width-headline-slot {
       .article {
          .sponsored {
@@ -1223,15 +1278,16 @@ ul.icon-list {
    }
    .primary-slot {
       @media #{$break-md} {
-         flex: 9;
+         @include flex(9);
       }
    }
    .sidebar-slot {
       @media #{$break-md} {
-         flex: 3;
+         @include flex(3);
       }
    }
    .footer-slot {
+      //border-bottom: 0;
       color: $gray-text-light;
       font-size: 0.64em;
       text-align: center;
@@ -1241,15 +1297,12 @@ ul.icon-list {
             text-decoration: underline;
          }
       }
-      .inner-wrap {
-         //padding: 30px 0;
-      }
       .footer-logo {
          background: url('img/logos/FMAA.svg') center center no-repeat;
          background-size: contain;
          margin: 0 auto;
-         width: 140px;
-         height: 140px;
+         width: 160px;
+         height: 160px;
       }
       .footer-links {
          list-style: none;
@@ -1283,7 +1336,7 @@ ul.icon-list {
       display: none;
       @media #{$break-md-lg} {
          display: block;
-         flex: 2;
+         @include flex(2);
       }
       p {
          display: none;
@@ -1296,22 +1349,25 @@ ul.icon-list {
       display: none;
       @media #{$break-md} {
          display: block;
-         flex: 1;
+         @include flex(1);
          min-height: 522px;
       }
       @media #{$break-md-lg} {
-         flex: 3;
+         @include flex(3);
       }
    }
 }
+#home-conferences {
+
+}
 #friends {
    .friend-wrapper {
-      flex: 50%;
+      @include flex(50%);
       @media (min-width : 480px) {
-         flex: 33.3333%;
+         @include flex(33.3333%);
       }
       @media #{$break-md} {
-         flex: 25%;
+         @include flex(25%);
       }
    }
 }
@@ -1346,6 +1402,17 @@ ul.icon-list {
       }
    }
 }
-
+#conferences {
+   background-color: $primary;
+   color: #fff;
+   padding: 15px;
+   text-align: center;
+   figure {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      margin: 0 15px;
+   }
+}
 
 
