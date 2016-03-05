@@ -12,15 +12,15 @@ $posts = get_posts( array(
    'order' => 'ASC'
 )); ?>
 
-   <main id="grid" role="main">
+   <main id="grid" role="main"> 
 
       <!-- section -->
       <section id="friends" class="flex-container">
          <div class="flex-item">
 
-            <div class="inner-wrap article" style="padding-bottom: 0;">
+            <div class="inner-wrap article no-btm-pad">
 
-               <h1><?php the_title(); ?></h1>
+               <h1><?php _e( 'Friendly faces', 'html5blank' ); ?></h1>
             
          <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 

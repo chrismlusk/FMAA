@@ -147,12 +147,12 @@ get_header(); ?>
                         <div class="league-logo <?php echo sponsored_logo( get_field('sponsor') ); ?>"></div>
                      </div>
                      <a href="<?php the_permalink(); ?>" class="link-item">
-                        <div class="bg-image visible-xs" 
-                        style="background-image:url('<?php echo $img_url[0] ?>')"></div>
+                        <figure class="bg-image visible-xs" 
+                        style="background-image:url('<?php echo $img_url[0] ?>')"></figure>
                         <h2><?php the_title(); ?></h2>
-                        <div class="slot-image hidden-xs">
+                        <figure class="slot-image hidden-xs">
                            <img src="<?php echo get_template_directory_uri(); ?>/img/test.jpg" />
-                        </div>
+                        </figure>
                      </a>
                      <p><?php the_field('summary'); ?></p>
                   </article>
