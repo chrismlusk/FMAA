@@ -18,7 +18,7 @@
                      </div>
                      <h1><?php the_title(); ?></h1>
                      <h3><?php the_field('subhead'); ?></h3>
-                     <div class="details">
+                     <div class="post-meta">
                         <span class="hidden-xs">By <?php the_author(); ?></span>
                         <span>Published on <?php the_time('F j, Y'); ?></span>
                         <span class="hidden-xs"><?php echo reading_time(); ?> min read</span>
@@ -31,8 +31,8 @@
 
          </section>
 
-         <!-- section#default -->
-         <section id="default" class="flex-container">
+         <!-- post layout  -->
+         <section id="post-layout" class="flex-container">
 
             <div class="flex-item primary-slot">
                <div class="inner-wrap">
@@ -79,6 +79,6 @@
          </div>
 
       </section>
-      <!-- /section#default -->
+      <!-- /post layout -->
 
       <?php get_footer(); ?>
