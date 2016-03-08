@@ -795,7 +795,7 @@ function friend_post_type()
         'hierarchical' => false,
         'menu_position' => 20,
         'has_archive' => false,
-        'rewrite' => false,
+        'rewrite' => array('slug' => 'friends'),
         'supports' => array(
             'title',
             'editor',

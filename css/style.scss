@@ -16,6 +16,7 @@ $font-sans:          'Roboto',sans-serif;
 $font-sans-cond:     'Roboto Condensed',$font-sans;
 $font-serif:         Georgia,serif;
 $font-header:        'Aleo', 'Roboto Slab', $font-serif;
+$break-sm:           "(min-width : 480px)";
 $break-md:           "(min-width : 768px)";
 $break-md-lg:        "(min-width : 880px)";
 $break-lg:           "(min-width : 992px)";
@@ -840,7 +841,7 @@ ul.icon-list {
             @include bg-shadow();
             @include transition(all);
          }
-         @media (min-width : 480px) {
+         @media #{$break-sm} {
             max-height: 220px;
          }
          @media #{$break-md} {
@@ -875,7 +876,7 @@ ul.icon-list {
             }
             .list-img {
                &:before {
-                  @include bg-shadow(rgba(0,0,0,0.85));
+                  @include bg-shadow(rgba(0,0,0,0.65));
                }
             }
          }
@@ -1258,15 +1259,21 @@ ul.icon-list {
          @media #{$break-md} {
             display: block;
             margin: 0 0 8px;
-            overflow: auto;
+            overflow-y: hidden;
             position: relative;
+            width: 100%;
+         }
+         .aspect-ratio {
+            padding-bottom: 56.25%; // 16x9 ratio
+            // Details: http://stackoverflow.com/a/10441480/2047959
+         }
+         .img-wrap {
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
             &:before {
                content: '';
                position: absolute;
-               top: 0;
-               left: 0;
-               bottom: 0;
-               right: 0;
+               top: 0; left: 0; bottom: 0; right: 0;
                @include bg-shadow();
                @include transition(all);
             }
@@ -1287,9 +1294,9 @@ ul.icon-list {
             h2 {
                color: $link-hover;
             }
-            .slot-image {
+            .img-wrap {
                &:before {
-                  @include bg-shadow(rgba(0,0,0,0.85));
+                  @include bg-shadow(rgba(0,0,0,0.65));
                }
             }
          }
@@ -1361,8 +1368,11 @@ ul.icon-list {
          }
       }
       .copyright {
-         font-size: 0.925em;
+         font-size: 0.85em;
          letter-spacing: 0.5px;
+         @media #{$break-sm} {
+            font-size: 0.925em;
+         }
          span {
             display: block;
             &.caps {
@@ -1405,7 +1415,7 @@ ul.icon-list {
 #friends {
    .friend-wrapper {
       @include flex(50%);
-      @media (min-width : 480px) {
+      @media #{$break-sm} {
          @include flex(33.3333%);
       }
       @media #{$break-md} {
@@ -1419,9 +1429,11 @@ ul.icon-list {
       text-align: left;
       img {
          margin: 0 0 20px 0;
-         @media #{$break-md} {
+         @media #{$break-sm} {
             float: left;
-            //margin: 0 20px 20px 0;
+            width: 22%;
+         }
+         @media #{$break-md} {
             width: 20%;
          }
          @media #{$break-lg} {
@@ -1432,8 +1444,11 @@ ul.icon-list {
          }
       }
       .header-text {
-         @media #{$break-md} {
+         @media #{$break-sm} {
             float: right;
+            width: 72.5%;
+         }
+         @media #{$break-md} {
             width: 76%;
          }
          @media #{$break-lg} {
@@ -1472,26 +1487,17 @@ ul.icon-list {
       }
       .icon-list {
          font-size: 1.15em;
-         max-width: 850px;
+         max-width: 750px;
          @media #{$break-md} {
-            font-size: .95em;
-         }
-         @media #{$break-md-lg} {
-            font-size: .925em;
+            font-size: .975em;
          }
          li {
             @media #{$break-md} {
                display: inline-block;
                width: 36%;
             }
-            @media #{$break-md-lg} {
-               width: 32%;
-            }
             @media #{$break-lg} {
-               width: 30%;
-            }
-            @media #{$break-xl} {
-               width: 26%;
+               width: 32%;
             }
             a {
                font-weight: normal;
@@ -1558,5 +1564,3 @@ ul.icon-list {
       }
    }
 }
-
-

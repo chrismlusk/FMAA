@@ -1,6 +1,6 @@
 <?php 
 
-/* Template Name: Homepage Template */ 
+/* Template Name: Homepage */ 
 
 get_header(); ?>
 
@@ -55,7 +55,7 @@ get_header(); ?>
                            We tweet at <a href="https://twitter.com/FriendMadness" target="_blank">@FriendMadness</a>, so follow and use the hashtag #FMAA16
                         </li>
                         <li class="trophy">
-                           Fill out and submit an <a href="#" target="_blank">FMAA bracket</a> before the tournament tips off
+                           Fill out and submit an <a href="bracket">FMAA bracket</a> before the tournament tips off
                         </li>
                         <li class="plus">
                            Download our official <a href="#" target="_blank">Chrome extension</a> and make the web friendlier
@@ -78,12 +78,12 @@ get_header(); ?>
                'category_name' => 'Featured'
             ));
             if (have_posts()): while (have_posts()) : the_post();
-               $img_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
+               $img_url = wp_get_attachment_url( get_post_thumbnail_id() );
                ?>
 
                <a href="<?php the_permalink(); ?>" class="lead-slot-link">
                   <div class="bg-image featured" 
-                  style="background-image:url('<?php echo $img_url[0] ?>')"></div>
+                  style="background-image:url('<?php echo $img_url; ?>')"></div>
                   <h1><?php the_title(); ?></h1>
                   <button class="btn btn-default">
                      <span class="read-more">Read more <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></span>
@@ -138,7 +138,7 @@ get_header(); ?>
          if( $posts ):
             foreach( $posts as $post ):
                setup_postdata( $post ); 
-               $img_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' ); ?>
+               $img_url = wp_get_attachment_url( get_post_thumbnail_id() ); ?>
 
                <div class="flex-item sponsored-article-slot">
                   <article class="inner-wrap clearfix">
@@ -148,10 +148,13 @@ get_header(); ?>
                      </div>
                      <a href="<?php the_permalink(); ?>" class="link-item">
                         <figure class="bg-image visible-xs" 
-                        style="background-image:url('<?php echo $img_url[0] ?>')"></figure>
+                        style="background-image:url('<?php echo $img_url; ?>')"></figure>
                         <h2><?php the_title(); ?></h2>
                         <figure class="slot-image hidden-xs">
-                           <img src="<?php echo get_template_directory_uri(); ?>/img/test.jpg" />
+                           <div class="aspect-ratio"></div>
+                           <div class="img-wrap">
+                              <img src="<?php echo $img_url; ?>" alt="<?php the_title(); ?>" />
+                           </div>
                         </figure>
                      </a>
                      <p><?php the_field('summary'); ?></p>

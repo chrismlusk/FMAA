@@ -54,15 +54,9 @@ $posts = get_posts( array(
                               <?php the_field('team_b'); ?>
                            </span>
 
-                           <span class="detail"><?php echo get_the_term_list( $post->ID, 'conference', 'Conference: ', ', ', '' ); ?></span>
-
                            <?php if ( get_field('twitter') ): ?>
-                              <span class="detail">Twitter: <?php echo link_to_twitter_username(); ?></span>
+                              <span class="detail"><?php echo link_to_twitter_username(); ?></span>
                            <?php endif; ?>
-
-                           <?php // if( get_field('title_history') ): ?>
-                              <!-- <span class="detail">Best Friend in <?php the_field('title_year'); ?></span> -->
-                           <?php // endif; ?>
                            
                         </div>
                      </div>
