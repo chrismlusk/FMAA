@@ -47,7 +47,7 @@
                   <article id="post-<?php the_ID(); ?>" class="article">
 
                      <!-- post thumbnail -->
-                     <?php if ( has_post_thumbnail() ):
+                     <?php if ( has_post_thumbnail() ): 
                         $img_url = wp_get_attachment_url( get_post_thumbnail_id() ); ?>
 
                         <figure class="lead-image">

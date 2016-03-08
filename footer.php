@@ -9,7 +9,7 @@
                   <li><a href="#">Advertise with us</a></li>
                   <li><a href="#">Customer Support</a></li>
                   <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Sign in</a></li>
+                  <li><a href="/wp-admin">Sign in</a></li>
                </ul>
                <div class="copyright">
                   <span class="caps">&copy; 2011-<?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</span>
