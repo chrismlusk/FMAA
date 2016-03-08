@@ -313,8 +313,8 @@ ul.icon-list {
    li {
       color: $black-text;
       display: block;
-      margin: 0 0 10px;
-      padding-left: 20px;
+      margin: 0 0 .625em;
+      padding-left: 1.750em;
       &:last-child {
          margin: 0;
       }
@@ -322,10 +322,10 @@ ul.icon-list {
          content: "\e023";
          color: $gray-text;
          font-family: 'FontAwesome';
-         font-size: 15px;
+         font-size: 1.125em;
          float: left;
-         margin-top: -1px;
-         margin-left: -20px;
+         margin-top: -0.063em;
+         margin-left: -1.5em;
       }
       &.time {
          &:before {
@@ -345,6 +345,21 @@ ul.icon-list {
       &.plus {
          &:before {
             content: "\f055";
+         }
+      }
+      &.tag {
+         &:before {
+            content: "\f02b";
+         }
+      }
+      &.basketball {
+         &:before {
+            content: "\f17d";
+         }
+      }
+      &.star {
+         &:before {
+            content: "\f005";
          }
       }
       a {
@@ -550,24 +565,6 @@ ul.icon-list {
       @media #{$break-xl} {
          font-size: 1.62em;
       }
-      .rank {
-         display: inline;
-         color: $secondary;
-         font-family: $font-sans;
-         font-size: .65em;
-         position: relative;
-         bottom: 2px;
-         @media #{$break-md} {
-            font-size: .6em;
-            bottom: 3px;
-         }
-         @media #{$break-lg} {
-            bottom: 4px;
-         }
-         @media #{$break-xl} {
-            bottom: 5px;
-         }
-      }
       &:after {
          content: '';
          background-color: $gray-border;
@@ -575,6 +572,24 @@ ul.icon-list {
          height: 1px;
          display: block;
          margin: 6px auto 8px;
+      }
+   }
+   .rank {
+      display: inline;
+      color: $secondary;
+      font-family: $font-sans;
+      font-size: .65em;
+      position: relative;
+      bottom: 2px;
+      @media #{$break-md} {
+         font-size: .6em;
+         bottom: 3px;
+      }
+      @media #{$break-lg} {
+         bottom: 4px;
+      }
+      @media #{$break-xl} {
+         bottom: 5px;
       }
    }
    .detail {
@@ -623,6 +638,22 @@ ul.icon-list {
       }
    }
 }
+.signature {
+   background: url('img/james-signature.svg') no-repeat center center;
+   background-size: contain;
+   margin: -8px 0 15px 2px;
+   width: 140px;
+   height: 70px;
+   transform: rotate(-2deg);
+   @media #{$break-md} {
+      width: 175px;
+      height: 85px;
+   }
+   @media #{$break-xl} {
+      width: 200px;
+      height: 90px;
+   }
+}
 .article {
    @media #{$break-md} {
       margin: 15px;
@@ -667,6 +698,34 @@ ul.icon-list {
          font-size: 3.25em;
       }
    }
+   h4 {
+      color: $spot-color;
+      font-family: $font-sans-cond;
+      font-size: 1em;
+      font-weight: 600;
+      text-transform: uppercase;
+      @media #{$break-md-lg} {
+         font-size: 1.15em;
+      }
+   }
+   .subhead {
+      color: $gray-text;
+      font-family: $font-sans;
+      font-size: 1.2em;
+      font-weight: 300;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      @media #{$break-md} {
+         font-size: 1.5em;
+         margin: 0 0 18px;
+      }
+      @media #{$break-lg} {
+         font-size: 1.7em;
+      }
+      @media #{$break-xl} {
+         font-size: 1.85em;
+      }
+   }
    p {
       color: $paragraph-text;
       font-family: $font-serif;
@@ -680,6 +739,27 @@ ul.icon-list {
       @media #{$break-lg} {
          font-size: 1.24em;
          margin: 0 0 28px;
+      }
+      &.lead {
+         background-color: darken($bg-color, 4%);
+         border: 1px solid darken($bg-color, 6%);
+         font-family: $font-sans;
+         font-size: 1.24em;
+         font-weight: 300;
+         margin: 0;
+         padding: 15px;
+         @media #{$break-md} {
+            font-size: 1.34em;
+         }
+         @media #{$break-lg} {
+            font-size: 1.44em;
+         }
+         & + h4 {
+            margin-top: 30px;
+            @media #{$break-md} {
+               margin-top: 60px;
+            }
+         }
       }
    }
    blockquote {
@@ -709,10 +789,7 @@ ul.icon-list {
          }
       }
    }
-   &.no-btm-pad { // isolated headers outside loops
-      padding-bottom: 0;
-   }
-   &.list {
+   &.list { // News page
       border-bottom: 1px solid $gray-border;
       padding: 11px 0 15px;
       @media #{$break-md} {
@@ -824,7 +901,9 @@ ul.icon-list {
          }
       }
    }
-
+   &.no-btm-pad {
+      padding-bottom: 0;
+   }
 }
 .twitter-tweet {
    margin: 0 auto;
@@ -1058,13 +1137,24 @@ ul.icon-list {
 /* -------------------------- */
 #grid {
    margin-top: 50px;
-
+   .primary-slot {
+      @media #{$break-md} {
+         @include flex(9);
+      }
+   }
+   .sidebar-slot {
+      @media #{$break-md} {
+         @include flex(3);
+      }
+   }
    .announcements-slot {
       p,
       ul {
-         color: $gray-text;
          font-size: .75em;
          line-height: 1.25;
+      }
+      p {
+         color: $gray-text;
       }
    }
    .lead-slot {
@@ -1211,26 +1301,6 @@ ul.icon-list {
          text-align: center;
       }
    }
-   .conference-slot {
-      >.flex-container {
-         align-items: center;
-         padding: 7.5px;
-         //border: 1px solid red;
-         .flex-item {
-            @include flex(50%);
-         }
-      }
-      figure {
-         background-color: #fff;
-         border: 1px solid $gray-border;
-         padding: 15px;
-         margin: 7.5px;
-         height: 200px;
-         img {
-            max-height: 100%;
-         }
-      }
-   }
    .full-width-headline-slot {
       .article {
          .sponsored {
@@ -1256,38 +1326,9 @@ ul.icon-list {
                font-size: 3.8em;
             }
          }
-         h3 {
-            color: $gray-text;
-            font-family: $font-sans;
-            font-size: 1.2em;
-            font-weight: 300;
-            line-height: 1.25;
-            margin-bottom: 12px;
-            @media #{$break-md} {
-               font-size: 1.5em;
-               margin: 0 0 18px;
-            }
-            @media #{$break-lg} {
-               font-size: 1.7em;
-            }
-            @media #{$break-xl} {
-               font-size: 1.85em;
-            }
-         }
-      }
-   }
-   .primary-slot {
-      @media #{$break-md} {
-         @include flex(9);
-      }
-   }
-   .sidebar-slot {
-      @media #{$break-md} {
-         @include flex(3);
       }
    }
    .footer-slot {
-      //border-bottom: 0;
       color: $gray-text-light;
       font-size: 0.64em;
       text-align: center;
@@ -1301,8 +1342,12 @@ ul.icon-list {
          background: url('img/logos/FMAA.svg') center center no-repeat;
          background-size: contain;
          margin: 0 auto;
-         width: 160px;
-         height: 160px;
+         width: 140px;
+         height: 140px;
+         @media #{$break-md-lg} {
+            width: 160px;
+            height: 160px;
+         }
       }
       .footer-links {
          list-style: none;
@@ -1357,9 +1402,6 @@ ul.icon-list {
       }
    }
 }
-#home-conferences {
-
-}
 #friends {
    .friend-wrapper {
       @include flex(50%);
@@ -1368,6 +1410,93 @@ ul.icon-list {
       }
       @media #{$break-md} {
          @include flex(25%);
+      }
+   }
+}
+#friend-profile {
+   .friend-wrapper {
+      color: $black-text;
+      text-align: left;
+      img {
+         margin: 0 0 20px 0;
+         @media #{$break-md} {
+            float: left;
+            //margin: 0 20px 20px 0;
+            width: 20%;
+         }
+         @media #{$break-lg} {
+            width: 18%;
+         }
+         @media #{$break-xl} {
+            width: 15%;
+         }
+      }
+      .header-text {
+         @media #{$break-md} {
+            float: right;
+            width: 76%;
+         }
+         @media #{$break-lg} {
+            width: 78%;
+         }
+         @media #{$break-xl} {
+            width: 81%;
+         }
+      }
+      h1 {
+         @media #{$break-md} {
+            font-size: 3em;
+         }
+         @media #{$break-lg} {
+            font-size: 3.4em;
+         }
+         .detail.team {
+            font-family: $font-sans;
+            font-size: .6em;
+            margin-top: .125em;
+            @media #{$break-md} {
+               font-size: .55em;
+            }
+            @media #{$break-lg} {
+               font-size: .475em;
+            }
+         }
+      }
+      .rank {
+         font-size: .45em;
+         bottom: 6px;
+         @media #{$break-md} {
+            font-size: .4em;
+            bottom: 8px;
+         }
+      }
+      .icon-list {
+         font-size: 1.15em;
+         max-width: 850px;
+         @media #{$break-md} {
+            font-size: .95em;
+         }
+         @media #{$break-md-lg} {
+            font-size: .925em;
+         }
+         li {
+            @media #{$break-md} {
+               display: inline-block;
+               width: 36%;
+            }
+            @media #{$break-md-lg} {
+               width: 32%;
+            }
+            @media #{$break-lg} {
+               width: 30%;
+            }
+            @media #{$break-xl} {
+               width: 26%;
+            }
+            a {
+               font-weight: normal;
+            }
+         }
       }
    }
 }
@@ -1405,13 +1534,28 @@ ul.icon-list {
 #conferences {
    background-color: $primary;
    color: #fff;
-   padding: 15px;
+   padding: 8px 15px 5px;
    text-align: center;
+   @media #{$break-md-lg} {
+      padding: 10px 15px 7px;
+   }
+   @media #{$break-xl} {
+      padding: 12px 15px 9px;
+   }
    figure {
       display: inline-block;
-      width: 40px;
-      height: 40px;
-      margin: 0 15px;
+      width: 32px;
+      height: 28px;
+      margin: 0 12px;
+      @media #{$break-md-lg} {
+         width: 36px;
+         height: 32px;
+         margin: 0 15px;
+      }
+      @media #{$break-xl} {
+         width: 40px;
+         height: 36px;
+      }
    }
 }
 

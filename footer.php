@@ -6,15 +6,10 @@
                <div class="footer-logo"></div>
                <ul class="footer-links">
                   <li><a href="#">About us</a></li>
-                  <li><a href="#">Advertise</a></li>
-                  <li><a href="#">Contact us</a></li>
-                  <!-- <li><a href="#">Bracket</a></li> -->
-                  <!-- <li><a href="#">Friends</a></li> -->
-                  <li><a href="#">Customer Service</a></li>
-                  <!-- <li><a href="#">News</a></li> -->
-                  <li><a href="#">Privacy</a></li>
-                  <li><a href="#">Terms</a></li>
-                  <li><a href="#">User agreement</a></li>
+                  <li><a href="#">Advertise with us</a></li>
+                  <li><a href="#">Customer Support</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Sign in</a></li>
                </ul>
                <div class="copyright">
                   <span class="caps">&copy; 2011-<?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</span>
@@ -26,7 +21,7 @@
       </footer>
       <!-- /footer -->
 
-      <section id="conferences" class="clearfix">
+      <section id="conferences" class="hidden-xs clearfix">
         <div class="">
           <figure class="league-logo big-8 compact"></figure>
           <figure class="league-logo catholic-7 compact"></figure>

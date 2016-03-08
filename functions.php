@@ -62,6 +62,282 @@ if (function_exists('add_theme_support'))
 	Functions
 \*------------------------------------*/
 
+// Write lead paragraph for friend profile page
+function write_friend_lead()
+{
+    $team_a = get_field('team_a');
+    $team_b = get_field('team_b');
+    $title_year = get_field('title_year');
+    $mvp_year = get_field('mvp_year');
+    $fmaa_history = get_field('fmaa_history');
+
+    // begin paragraph with first name
+    echo get_first_name() . ' is ';
+
+    // put correct article before seed
+    if ( tournament_seed() == 8 ) {
+        echo 'an ';
+    }
+    else {
+        echo 'a ';
+    }
+
+    // write seed, conference and teams
+    echo tournament_seed() . '-seed from ' . the_friend_conference() . ' and is leading ' . $team_a . ' and ' . $team_b . ' in the tournament.';
+
+    // check if friend has won title or MVP
+    if ( get_field('title_history') || get_field('mvp_history') ) {
+        echo ' This friend';
+
+        if ( get_field('title_history') ) {
+            echo ' won the FMAA title in ';
+
+            // formatting for title count
+            if ( count($title_year) > 1 ) {
+                echo implode(' and ', $title_year);
+            }
+            else {
+                echo $title_year[0];
+            }
+
+            // formatting for title and/or mvp
+            if ( get_field('title_history') && get_field('mvp_history') ) {
+                echo ' and ';
+            }
+            else {
+                echo '.';
+            }
+        }
+
+        if ( get_field('mvp_history') ) {
+            echo 'was named MVP in ';
+
+            // formatting for mvp count
+            if ( count($mvp_year) > 1 ) {
+                echo implode(' and ', $mvp_year);
+            }
+            else {
+                echo $mvp_year[0];
+            }
+
+            echo '.';
+        }
+    }
+
+    // count tournament appearances
+    if ( $fmaa_history ) {
+        echo ' ' . get_first_name() . ' is in the Friendship Madness field for the ' . convert_num_to_ordinal( $fmaa_history ) . ' time this year.';
+    }
+}
+
+// Convert integers to ordinal numbers
+function convert_num_to_ordinal( $input )
+{
+    $var = count($input);
+    $ordinal_numbers = array(
+        1 => 'first',
+        2 => 'second',
+        3 => 'third',
+        4 => 'fourth',
+        5 => 'fifth',
+        6 => 'sixth',
+        7 => 'seventh',
+        8 => 'eighth',
+        9 => 'ninth'
+    );
+
+    if ( $var == null ) {
+        return '(Error! This value is empty.)';
+    }
+    elseif ( $var < 10 ) {
+        foreach ( $ordinal_numbers as $key => $value ) {
+            if ( $var == $key ) {
+                $var_ordinal = $value;
+                return $var_ordinal;
+            }
+        }
+    }
+    else {
+        if ( !in_array(($var % 100), array(11,12,13)) ) {
+            switch ( $var % 10 ) {
+                // handle 1st, 2nd, 3rd
+                case 1: return $var.'st';
+                case 2: return $var.'nd';
+                case 3: return $var.'rd';
+            }
+        }
+        return $var.'th';
+    }
+}
+
+// Display FMAA history in range
+function fmaa_history_range()
+{
+    $history = get_field('fmaa_history');
+    $first_year = $history[0];
+    $last_year = end($history);
+    if ( $first_year == $last_year ) {
+        $years = $first_year;
+    }
+    else {
+        $years = $first_year . '-' . $last_year;
+    }
+    return $years;
+}
+
+// Format and output conference affilliation 
+function the_friend_conference()
+{
+    $term = get_the_term_list( get_the_ID(), 'conference' );
+    switch( true ) {
+        case ( has_term('big-8', 'conference') ):
+        case ( has_term('catholic-7', 'conference') ):
+        case ( has_term('norman', 'conference') ):
+        case ( has_term('pack-10', 'conference') ):
+            $conference = 'the ' . $term . ' Conference';
+            break;
+        case ( has_term('cma', 'conference') ):
+        case ( has_term('okc', 'conference') ):
+            $conference = 'the ' . $term;
+            break;
+        case ( has_term('the-daily', 'conference') ):
+            $conference = $term . ' Conference';
+            break;
+        case ( has_term('the-urb', 'conference') ):
+            $conference = $term . ' League';
+            break;
+        default:
+            $conference = $term;
+            break;
+    }
+    // strip tags so not returned as a link
+    return strip_tags($conference);
+}
+
+// Removes quick edit from Friends post type
+function remove_quick_edit ( $actions )
+{
+    global $post;
+    if ( $post->post_type == 'friends' ) {
+        unset( $actions['inline hide-if-no-js'] );
+    }
+    return $actions;
+}
+
+// Replace conference taxonomy checkboxes with radio buttons
+function wpse_139269_term_radio_checklist( $args ) {
+    if ( ! empty( $args['taxonomy'] ) && $args['taxonomy'] === 'conference' ) {
+        if ( empty( $args['walker'] ) || is_a( $args['walker'], 'Walker' ) ) { // Don't override 3rd party walkers
+            if ( ! class_exists( 'WPSE_139269_Walker_Category_Radio_Checklist' ) ) {
+                /**
+                 * Custom walker for switching checkbox inputs to radio.
+                 *
+                 * @see Walker_Category_Checklist
+                 */
+                class WPSE_139269_Walker_Category_Radio_Checklist extends Walker_Category_Checklist {
+                    function walk( $elements, $max_depth, $args = array() ) {
+                        $output = parent::walk( $elements, $max_depth, $args );
+                        $output = str_replace(
+                            array( 'type="checkbox"', "type='checkbox'" ),
+                            array( 'type="radio"', "type='radio'" ),
+                            $output
+                        );
+                        return $output;
+                    }
+                }
+            }
+            $args['walker'] = new WPSE_139269_Walker_Category_Radio_Checklist;
+        }
+    }
+    return $args;
+}
+
+// Get friend's first name from Friends post type
+function get_first_name()
+{
+    $first_name = preg_split( '/\s/', get_the_title() );
+    return $first_name[0];
+}
+
+// Check if friend's teams are eliminated
+function check_team_status()
+{
+    return array(get_field('team_a_eliminated'), get_field('team_b_eliminated'));
+}
+
+// Cross out team if eliminated
+function team_eliminated( $team )
+{
+    $team_status = check_team_status();
+    $class = null;
+    switch($team) {
+        case 'team_a':
+            if ( $team_status[0] ) {
+                $class = 'knocked-out';
+            }
+            break;
+        case 'team_b':
+            if ( $team_status[1] ) {
+                $class = 'knocked-out';
+            }
+            break;
+    }
+    return $class;
+}
+
+// Make friend inactive if eliminated is checked
+function friend_inactive()
+{
+    $team_status = check_team_status();
+    if ( $team_status[0] && $team_status[1] ) {
+        $set_class = 'inactive';
+    }
+    else {
+        $set_class = null;
+    }
+    return $set_class;
+}
+
+// Get tournament seed
+function tournament_seed()
+{
+    $seed = get_field('seed');
+    if ( $seed > 28 ) {
+        $bracket_seed = 8;
+    }
+    elseif ( $seed < 29 && $seed > 24 ) {
+        $bracket_seed = 7;
+    }
+    elseif ( $seed < 25 && $seed > 20 ) {
+        $bracket_seed = 6;
+    }
+    elseif ( $seed < 21 && $seed > 16 ) {
+        $bracket_seed = 5;
+    }
+    elseif ( $seed < 17 && $seed > 12 ) {
+        $bracket_seed = 4;
+    }
+    elseif ( $seed < 13 && $seed > 8 ) {
+        $bracket_seed = 3;
+    }
+    elseif ( $seed < 9 && $seed > 4 ) {
+        $bracket_seed = 2;
+    }
+    else {
+        $bracket_seed = 1;
+    }
+    return $bracket_seed;
+}
+
+// Link to Twitter username
+function link_to_twitter_username(  )
+{
+    $twitter = get_field('twitter');
+    $twitter_name = '@' . preg_replace('/^.*\/\s*/', '', $twitter);
+    $twitter_link = $twitter;
+    return '<a href="' . $twitter_link . '" target="_blank">' . $twitter_name . '</a>';
+}
+
 // Countdown to event
 function event_countdown( $var )
 {
@@ -141,7 +417,8 @@ function sponsored_logo( $sponsored )
 }
 
 // Get Reading Time
-function reading_time() {
+function reading_time() 
+{
     $content = get_post_field( 'post_content', $post->ID );
     $word_count = str_word_count( strip_tags( $content ) );
     return round($word_count / 225);
@@ -222,7 +499,7 @@ function register_html5_menu()
     register_nav_menus(array( // Using array to specify more menus if needed
         'header-menu' => __('Header Menu', 'html5blank'), // Main Navigation
         'sidebar-menu' => __('Sidebar Menu', 'html5blank'), // Sidebar Navigation
-        'extra-menu' => __('Extra Menu', 'html5blank') // Extra Navigation if needed (duplicate as many as you need!)
+        'extra-menu' => __('Extra Menu', 'html5blank') // Extra Navigation
     ));
 }
 
@@ -360,7 +637,7 @@ function html5_style_remove($tag)
     return preg_replace('~\s+type=["\'][^"\']++["\']~', '', $tag);
 }
 
-// Remove thumbnail width and height dimensions that prevent fluid images in the_thumbnail
+// Remove thumbnail width & height that prevent fluid images in the_thumbnail
 function remove_thumbnail_dimensions( $html )
 {
     $html = preg_replace('/(width|height)=\"\d*\"\s/', "", $html);
@@ -398,7 +675,7 @@ function html5blankcomments($comment, $args, $depth)
 		$tag = 'li';
 		$add_below = 'div-comment';
 	}
-?>
+    ?>
     <!-- heads up: starting < for the html tag (li or div) in the next line: -->
     <<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
 	<?php if ( 'div' != $args['style'] ) : ?>
@@ -408,10 +685,10 @@ function html5blankcomments($comment, $args, $depth)
 	<?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['180'] ); ?>
 	<?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
 	</div>
-<?php if ($comment->comment_approved == '0') : ?>
+    <?php if ($comment->comment_approved == '0') : ?>
 	<em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
 	<br />
-<?php endif; ?>
+    <?php endif; ?>
 
 	<div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
 		<?php
@@ -427,7 +704,8 @@ function html5blankcomments($comment, $args, $depth)
 	<?php if ( 'div' != $args['style'] ) : ?>
 	</div>
 	<?php endif; ?>
-<?php }
+    <?php 
+}
 
 /*------------------------------------*\
 	Actions + Filters + ShortCodes
@@ -443,6 +721,9 @@ add_action('init', 'friend_post_type'); // Add Friend Post Type
 add_action('init', 'conference_taxonomy', 0); // Add Conference taxonomy
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
+if ( is_admin() ) {
+    add_filter('post_row_actions', 'remove_quick_edit', 10, 2);
+}
 
 // Remove Actions
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
@@ -475,7 +756,7 @@ add_filter('show_admin_bar', 'remove_admin_bar'); // Remove Admin bar
 add_filter('style_loader_tag', 'html5_style_remove'); // Remove 'text/css' from enqueued stylesheet
 add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to thumbnails
 add_filter('image_send_to_editor', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to post images
-
+add_filter( 'wp_terms_checklist_args', 'wpse_139269_term_radio_checklist' ); // Changes conference taxonomy checkboxes to radio buttons for Friends posts
 // Remove Filters
 remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altogether
 

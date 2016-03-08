@@ -17,7 +17,13 @@
                         <div class="league-logo <?php echo sponsored_logo( get_field('sponsor') ); ?>"></div>
                      </div>
                      <h1><?php the_title(); ?></h1>
-                     <h3><?php the_field('subhead'); ?></h3>
+
+                     <?php 
+                     $subhead = get_field('subhead');
+                     if ( $subhead ) : ?>
+                        <p class="subhead"><?php the_field('subhead'); ?></p>
+                     <?php endif; ?>
+
                      <div class="post-meta">
                         <span class="hidden-xs">By <?php the_author(); ?></span>
                         <span>Published on <?php the_time('F j, Y'); ?></span>
