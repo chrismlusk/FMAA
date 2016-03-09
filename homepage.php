@@ -58,7 +58,7 @@ get_header(); ?>
                            Fill out and submit an <a href="bracket">FMAA bracket</a> before the tournament tips off
                         </li>
                         <li class="plus">
-                           Download our official <a href="#" target="_blank">Chrome extension</a> and make the web friendlier
+                           Download our official <a href="https://chrome.google.com/webstore/detail/friendship-madness/ljeefnijldbmngpomnkdiklijedmkmck?hl=en-US" target="_blank">Chrome extension</a> and make the web friendlier
                         </li>
                      </ul>
                   </div>
