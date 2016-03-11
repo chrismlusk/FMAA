@@ -199,49 +199,6 @@ get_header(); ?>
 
                         setup_postdata( $post );
 
-                        $team_a_out = null;
-                        $team_b_out = null;
-                        $a_eliminated = get_field('team_a_eliminated');
-                        $b_eliminated = get_field('team_b_eliminated');
-                        if ( $a_eliminated ) {
-                           $team_a_out = 'knocked-out';
-                        }
-                        if ( $b_eliminated ) {
-                           $team_b_out = 'knocked-out';
-                        }
-
-                        $inactive = null;
-                        $eliminated = get_field('is_eliminated');
-                        if ( $eliminated ) {
-                           $inactive = 'inactive';
-                        }
-
-                        $seed = get_field('seed');
-                        if ( $seed > 28 ) {
-                           $bracket_seed = 8;
-                        }
-                        elseif ( $seed < 29 && $seed > 24 ) {
-                           $bracket_seed = 7;
-                        }
-                        elseif ( $seed < 25 && $seed > 20 ) {
-                           $bracket_seed = 6;
-                        }
-                        elseif ( $seed < 21 && $seed > 16 ) {
-                           $bracket_seed = 5;
-                        }
-                        elseif ( $seed < 17 && $seed > 12 ) {
-                           $bracket_seed = 4;
-                        }
-                        elseif ( $seed < 13 && $seed > 8 ) {
-                           $bracket_seed = 3;
-                        }
-                        elseif ( $seed < 9 && $seed > 4 ) {
-                           $bracket_seed = 2;
-                        }
-                        else {
-                           $bracket_seed = 1;
-                        }
-
                         $active = get_field('is_active');
                         
                         if ( $active ): 
@@ -249,20 +206,20 @@ get_header(); ?>
                            ?>
 
                            <a href="<?php the_permalink(); ?>" class="carousel-item">
-                              <div class="friend-wrapper <?php echo $inactive; ?>">
+                              <div class="friend-wrapper <?php echo friend_inactive(); ?>">
                                  <img src="<?php the_field('photo'); ?>" />
                                  <div class="friend-info">
                                     <span class="name">
                                        <span class="rank">
-                                          (<?php echo $bracket_seed; ?>)
+                                          (<?php echo get_the_tournament_seed(); ?>)
                                        </span>
                                        <?php the_title(); ?>
                                     </span>
-                                    <span class="detail team <?php echo $team_a_out; ?>">
-                                       <?php the_field('team_a'); ?>
+                                    <span class="detail team <?php echo get_the_team_status('team_a'); ?>">
+                                       <?php echo get_the_team('team_a'); ?>
                                     </span>
-                                    <span class="detail team <?php echo $team_b_out; ?>">
-                                       <?php the_field('team_b'); ?>
+                                    <span class="detail team <?php echo get_the_team_status('team_b'); ?>">
+                                       <?php echo get_the_team('team_b'); ?>
                                     </span>
                                  </div>
                               </div>

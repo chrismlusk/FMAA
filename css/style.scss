@@ -12,6 +12,7 @@ $link:               $secondary;
 $link-hover:         lighten($secondary, 12%);
 $gray-border:        #e2e2e2;
 $bg-color:           #edf5fa;
+$bracket-border:     darken($bg-color, 25%);
 $font-sans:          'Roboto',sans-serif;
 $font-sans-cond:     'Roboto Condensed',$font-sans;
 $font-serif:         Georgia,serif;
@@ -530,6 +531,9 @@ ul.icon-list {
       }
    }
 }
+.knocked-out {
+   text-decoration: line-through;
+}
 .friend-wrapper {
    color: $gray-text;
    font-size: 1em;
@@ -603,9 +607,6 @@ ul.icon-list {
       &.team {
          font-size: .85em;
          font-weight: 600;
-         &.knocked-out {
-            text-decoration: line-through;
-         }
          @media #{$break-md-lg} {
             font-size: 1em;
          }
@@ -909,6 +910,9 @@ ul.icon-list {
 .twitter-tweet {
    margin: 0 auto;
    width: 100%;
+}
+input[type=checkbox]:disabled {
+   opacity: .9;
 }
 
 
@@ -1561,6 +1565,153 @@ ul.icon-list {
       @media #{$break-xl} {
          width: 40px;
          height: 36px;
+      }
+   }
+}
+
+
+
+
+
+
+
+
+
+
+.bracket-wrap {
+   background-color: darken($bg-color, 4%);
+   border: 1px solid darken($bg-color, 6%);
+   padding: 10px 0 10px 10px;
+   .table {
+      font-size: 0.725em;
+      margin-bottom: -10px;
+      width: 100%;
+      >thead>tr>th {
+         border-bottom: 0;
+         padding: 0 10px 10px 0;
+         text-align: center;
+         .label {
+            background-color: $secondary;
+            border-radius: 0;
+            display: block;
+            font-size: 1.25em;
+            font-weight: 400;
+            padding: 12px 8px;
+            vertical-align: middle;
+         }
+      }
+      >tbody+tbody { border: 0; }
+      >tbody>tr>td,
+      >tbody>tr>th,
+      >tfoot>tr>td,
+      >tfoot>tr>th {
+         border-top: 0;
+         padding: 0 10px 0 0;
+         vertical-align: middle;
+      }
+      tr {
+         &.region {
+               td {
+                  font-family: $font-header;
+                  font-size: 2.2em;
+                  text-transform: capitalize;
+                  padding: 15px 0 10px;
+               }
+         }
+      }
+      td {
+         width: 20%;
+      }
+   }
+   .matchup {
+      background-color: darken($bg-color, 4%);
+      border-right: 2px solid $bracket-border;
+      margin-bottom: 10px;
+      position: relative;
+      span {
+         display: block;
+      }
+   }
+   .team {
+      background-color: #fff;
+      border: 2px solid $bracket-border;
+      border-right: 0;
+      border-left: 0;
+      color: $black-text;
+      padding: 4px 6px;
+      &.top {
+         border-bottom: 0;
+      }
+      &.bottom {
+         border-top: 0;
+      }
+      .inactive {
+         color: rgba($gray-text, .4);
+      }
+      .rank {
+         color: $gray-text-light;
+         display: inline-block;
+         font-size: .875em;
+         font-weight: bold;
+         margin-right: 6px;
+         text-align: right;
+         width: 12px;
+      }
+      .name {
+         display: inline-block;
+         &.knocked-out {
+            color: $gray-text-light;
+         }
+         &.bold {
+            font-weight: bold;
+         }
+      }
+   }
+   .round {
+      &.first{
+         .matchup {
+            border: 2px solid $bracket-border;
+            border-left: 0;
+            .team {
+               border: 0;
+               &+.team {
+                  margin-top: 2px;
+               }
+            }
+
+         }
+      }
+      &.second{
+         .matchup {
+            border: 2px solid $bracket-border;
+            border-left: 0;
+            .team {
+               border: 0;
+               &+.team {
+                  margin-top: 40px;
+               }
+            }
+         }
+      }
+      &.sweet-16 {
+         .team {
+            &+.team {
+               margin-top: 110px;
+            }
+         }
+      }
+      &.elite-8 {
+         .team {
+            &+.team {
+               margin-top: 240px;
+            }
+         }
+      }
+      &.final-4 {
+         .team {
+            border: 2px solid $bracket-border;
+            border-right: 0;
+         }
       }
    }
 }

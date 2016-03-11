@@ -42,16 +42,16 @@ $posts = get_posts( array(
                               <img src="<?php the_field('photo'); ?>" />
                               <div class="friend-info">
                                  <span class="name">
-                                    <span class="rank">(<?php echo tournament_seed(); ?>)</span> <?php the_title(); ?>
+                                    <span class="rank">(<?php echo get_the_tournament_seed(); ?>)</span> <?php the_title(); ?>
                                  </span>
                               </div>
                            </a>
 
-                           <span class="detail team <?php echo team_eliminated('team_a'); // must include the field name ?>">
-                              <?php the_field('team_a'); ?>
+                           <span class="detail team <?php echo get_the_team_status('team_a'); ?>">
+                              <?php echo get_the_team('team_a'); ?>
                            </span>
-                           <span class="detail team <?php echo team_eliminated('team_b'); // must include the field name ?>">
-                              <?php the_field('team_b'); ?>
+                           <span class="detail team <?php echo get_the_team_status('team_b'); ?>">
+                              <?php echo get_the_team('team_b'); ?>
                            </span>
 
                            <?php if ( get_field('twitter') ): ?>

@@ -62,11 +62,115 @@ if (function_exists('add_theme_support'))
 	Functions
 \*------------------------------------*/
 
+// Override admin disabled input style
+add_action('admin_head', 'override_disabled_input');
+function override_disabled_input()
+{
+    echo '<style>
+        input[type=checkbox].disabled, input[type=checkbox].disabled:checked:before, input[type=checkbox]:disabled, input[type=checkbox]:disabled:checked:before, input[type=radio].disabled, input[type=radio].disabled:checked:before, input[type=radio]:disabled, input[type=radio]:disabled:checked:before {
+            opacity: .9;
+        }
+    </style>';
+}
+
+// Output bracket matchup (single game at a time)
+function bracket_matchup( $region, $round, $top_seed, $btm_seed )
+{
+    switch ( $round ) {
+        case 'second':
+            $rowspan = ' rowspan="2"';
+            $round = 'second';
+            break;
+        case 'sweet-16':
+            $rowspan = ' rowspan="4"';
+            $round = 'sweet-16';
+            break;
+        case 'elite-8':
+            $rowspan = ' rowspan="8"';
+            $round = 'elite-8';
+            break;
+        case 'final-4':
+            $rowspan = ' rowspan="8"';
+            $round = 'final-4';
+            $btm_seed = null;
+            break;
+        
+        default:
+            $rowspan = null;
+            $round = 'first';
+            break;
+    }
+
+    $status_1 = get_the_team_status( $region . '_' . $top_seed );
+    $status_2 = get_the_team_status( $region . '_' . $btm_seed );
+
+    $obj_1 = get_field( $region . '_' . $top_seed );
+    $obj_2 = get_field( $region . '_' . $btm_seed );
+
+    $team_round_1 = get_field('round', $obj_1->ID);
+    $team_round_2 = get_field('round', $obj_2->ID);
+
+    if ( $team_round_1 && !$status_1 ) {
+        $style_1 = 'bold';
+    }
+    if ( $team_round_2 && !$status_2 ) {
+        $style_2 = 'bold';
+    }
+
+    if ( $round == 'final-4' ) {
+        // only output one team div
+        echo '<td' . $rowspan . ' class="round ' . $round . '">';
+            echo '<div class="matchup">';
+                echo '<div class="team top">';
+                    if ( $top_seed == 0 ) {
+                        echo '<span class="inactive">TBD</span>';
+                    }
+                    else {
+                        echo '<span class="rank">' . $top_seed . '</span>';
+                        echo '<span class="name ' . $status_1 . ' ' . $style_1 . '">';
+                            echo get_the_team_and_friend( $region . '_' . $top_seed );
+                        echo '</span>';
+                    }
+                echo '</div>';
+            echo '</div>';
+        echo '</td>';
+    }
+    else {
+        // output full matchup
+        echo '<td' . $rowspan . ' class="round ' . $round . '">';
+            echo '<div class="matchup">';
+                echo '<div class="team top">';
+                    if ( $top_seed == 0 ) {
+                        echo '<span class="inactive">TBD</span>';
+                    }
+                    else {
+                        echo '<span class="rank">' . $top_seed . '</span>';
+                        echo '<span class="name ' . $status_1 . ' ' . $style_1 . '">';
+                            echo get_the_team_and_friend( $region . '_' . $top_seed );
+                        echo '</span>';
+                    }
+                echo '</div>';
+                echo '<div class="team bottom">';
+                    if ( $btm_seed == 0 ) {
+                        echo '<span class="inactive">TBD</span>';
+                    }
+                    else {
+                        echo '<span class="rank">' . $btm_seed . '</span>';
+                        echo '<span class="name ' . $status_2 . ' ' . $style_2 . '">';
+                            echo get_the_team_and_friend( $region . '_' . $btm_seed );
+                        echo '</span>';
+                    }
+                echo '</div>';
+            echo '</div>';
+        echo '</td>';
+    }
+}
+
 // Write lead paragraph for friend profile page
 function write_friend_lead()
 {
-    $team_a = get_field('team_a');
-    $team_b = get_field('team_b');
+    $team_a = get_the_team('team_a');;
+    $team_b = get_the_team('team_b');;
     $title_year = get_field('title_year');
     $mvp_year = get_field('mvp_year');
     $fmaa_history = get_field('fmaa_history');
@@ -75,7 +179,7 @@ function write_friend_lead()
     echo get_first_name() . ' is ';
 
     // put correct article before seed
-    if ( tournament_seed() == 8 ) {
+    if ( get_the_tournament_seed() == 8 ) {
         echo 'an ';
     }
     else {
@@ -83,7 +187,7 @@ function write_friend_lead()
     }
 
     // write seed, conference and teams
-    echo tournament_seed() . '-seed from ' . the_friend_conference() . ' and is leading ' . $team_a . ' and ' . $team_b . ' in the tournament.';
+    echo get_the_tournament_seed() . '-seed from ' . the_friend_conference() . ' and is leading ' . $team_a . ' and ' . $team_b . ' in the tournament.';
 
     // check if friend has won title or MVP
     if ( get_field('title_history') || get_field('mvp_history') ) {
@@ -176,8 +280,12 @@ function fmaa_history_range()
     $history = get_field('fmaa_history');
     $first_year = $history[0];
     $last_year = end($history);
+
     if ( $first_year == $last_year ) {
         $years = $first_year;
+    }
+    elseif ( $last_year == $history[1] ) {
+        $years = implode(', ', $history);
     }
     else {
         $years = $first_year . '-' . $last_year;
@@ -259,28 +367,91 @@ function get_first_name()
     return $first_name[0];
 }
 
-// Check if friend's teams are eliminated
-function check_team_status()
+// Format the team and friend together
+function get_the_team_and_friend( $var )
 {
-    return array(get_field('team_a_eliminated'), get_field('team_b_eliminated'));
+    $team = get_the_team_short_name( $var );
+    $friend = get_the_friend ( $var );
+    return $friend . ' (' . $team . ')';
 }
 
-// Cross out team if eliminated
-function team_eliminated( $team )
+// Get the name of the friend who is assigned to the team
+function get_the_friend( $var )
 {
-    $team_status = check_team_status();
+    $var = get_field($var);
+    $friend = get_field( 'friend', $var->ID );
+    return get_the_title( $friend->ID );
+}
+
+// Get team's short name from Friend profile page
+function get_the_team_short_name( $var )
+{
+    $var = get_field($var);
+    $short_name = get_field('short_name', $var->ID );
+
+    if ( $short_name ) {
+        return $short_name;
+    }
+    else {
+        return get_the_title( $var->ID );
+    }
+}
+
+// Get team name from Friend profile page
+function get_the_team( $var )
+{
+    $var = get_field($var);
+    return get_the_title( $var->ID );
+}
+
+// Find out if team has advanced, and if so, to what round
+function get_the_team_round( $var )
+{
+    $status = get_the_team_status($var);
+    $obj = get_field($var);
+    $round = get_field('round', $obj->ID);
+    switch ( end($round) ) {
+        case 'second':
+            $round_name = 'Second Round';
+            break;
+        case 'sweet-16':
+            $round_name = 'Sweet 16';
+            break;
+        case 'elite-8':
+            $round_name = 'Elite 8';
+            break;
+        case 'final-4':
+            $round_name = 'Friendly Four';
+            break;
+        case 'champ':
+            $round_name = 'FMAA Championship';
+            break;
+        default:
+            $round_name = 'First Round';
+            break;
+    }
+
+    if ( $round && !$status ) {
+        //echo 'Advanced to the ' . $round_name . '!';
+    }
+    elseif ( $status == 'knocked-out' ) {
+        //echo 'Eliminated in the ' . $round_name . '.';
+    }
+    else {
+        //echo 'Sorry, results have not been updated.';
+    }
+
+    return $round_name;
+}
+
+// Cross out friend's team if eliminated
+function get_the_team_status( $var )
+{
+    $var = get_field($var);
+    $status = get_field('is_eliminated', $var->ID);
     $class = null;
-    switch($team) {
-        case 'team_a':
-            if ( $team_status[0] ) {
-                $class = 'knocked-out';
-            }
-            break;
-        case 'team_b':
-            if ( $team_status[1] ) {
-                $class = 'knocked-out';
-            }
-            break;
+    if ( $status ) {
+        $class = 'knocked-out';
     }
     return $class;
 }
@@ -288,18 +459,21 @@ function team_eliminated( $team )
 // Make friend inactive if eliminated is checked
 function friend_inactive()
 {
-    $team_status = check_team_status();
-    if ( $team_status[0] && $team_status[1] ) {
-        $set_class = 'inactive';
+    $team_a = get_field('team_a');
+    $team_b = get_field('team_b');
+    $status_a = get_field('is_eliminated', $team_a->ID);
+    $status_b = get_field('is_eliminated', $team_b->ID);
+    if ( $status_a && $status_b ) {
+        $class = 'inactive';
     }
     else {
-        $set_class = null;
+        $class = null;
     }
-    return $set_class;
+    return $class;
 }
 
 // Get tournament seed
-function tournament_seed()
+function get_the_tournament_seed()
 {
     $seed = get_field('seed');
     if ( $seed > 28 ) {
@@ -708,6 +882,376 @@ function html5blankcomments($comment, $args, $depth)
 }
 
 /*------------------------------------*\
+    Custom Post Types and Admin Columns
+\*------------------------------------*/
+
+/* TEAMS -----------------------------*/
+
+// Create Teams custom post type
+function team_post_type()
+{
+    $labels = array(
+        'name' => __('Teams', 'FMAA'),
+        'singular_name' => __('Team', 'FMAA'),
+        'add_new' => __('Add New', 'FMAA'),
+        'add_new_item' => __('Add New Team', 'FMAA'),
+        'edit_item' => __('Edit Team', 'FMAA'),
+        'new_item' => __('New Team', 'FMAA'),
+        'all_items' => __('All Teams','FMAA'),
+        'view_item' => __('View Team', 'FMAA'),
+        'search_items' => __('Search Teams', 'FMAA'),
+        'not_found' => __('No teams found', 'FMAA'),
+        'not_found_in_trash' => __('No teams found in Trash', 'FMAA'),
+        'menu_name' => __('Teams', 'FMAA'),
+        'parent_item_colon' => '',
+    );
+
+    $supports = array(
+        'title',
+        //'editor',
+        'page-attributes'
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => false,
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => 21,
+        'menu_icon' => 'dashicons-plus-alt',
+        'can_export' => true,
+        'supports' => $supports,
+    );
+
+    register_post_type('teams', $args);
+}
+
+// Create new columns for 'Teams' admin table
+add_filter('manage_teams_posts_columns', 'teams_table_head');
+function teams_table_head( $defaults )
+{
+    unset($defaults['date']);
+    $defaults['friend'] = 'Friend';
+    $defaults['is_active'] = 'Active';
+    $defaults['is_eliminated'] = 'Eliminated';
+    return $defaults;
+}
+
+// Fill 'Teams' columns with content
+add_action('manage_teams_posts_custom_column', 'teams_table_content', 10, 2);
+function teams_table_content( $column_name, $post_id )
+{
+    $friend = get_field('friend');
+    $active = get_field('is_active');
+    $eliminated = get_field('is_eliminated');
+
+    if ( $column_name == 'friend' ) {
+        if ( $friend ) {
+            echo get_the_title( $friend->ID );
+        }
+        else {
+            echo '<span style="color:#aaa;">(none)</span>';
+        }
+    }
+    if ( $column_name == 'is_active' ) {
+        if ( $active == 1 ) {
+            echo '<input type="checkbox" checked disabled>';
+            echo ' Yes';
+        }
+        else {
+            echo '<input type="checkbox" disabled>';
+            echo ' No';
+        }
+    }
+    if ( $column_name == 'is_eliminated' ) {
+        if ( $active == 1 ) {
+            if ( $eliminated == 1 ) {
+                echo '<input type="checkbox" checked disabled>';
+                echo ' Yes';
+            }
+            else {
+                echo '<input type="checkbox" disabled>';
+                echo ' No';
+            }
+        }
+        else {
+            echo '<span style="color:#aaa;">(N/A)</span>';
+        }
+    }
+}
+
+// Make 'Teams' columns sortable
+add_filter('manage_edit-teams_sortable_columns', 'teams_table_sorting');
+function teams_table_sorting( $columns )
+{
+    $columns['friend'] = 'friend';
+    $columns['is_active'] = 'is_active';
+    $columns['is_eliminated'] = 'is_eliminated';
+    return $columns;
+}
+
+// Modify 'Teams' query when 'friend' column is sorted
+add_filter('request', 'teams_table_friend_column_orderby');
+function teams_table_friend_column_orderby( $vars )
+{
+    if ( isset( $vars['orderby'] ) && 'friend' == $vars['orderby'] ) {
+        $vars = array_merge( $vars, array(
+            'meta_key' => 'friend',
+            'orderby' => 'meta_value'
+        ));
+    }
+    return $vars;
+}
+
+// Modify 'Teams' query when 'active' column is sorted
+add_filter('request', 'teams_table_active_column_orderby');
+function teams_table_active_column_orderby( $vars )
+{
+    if ( isset( $vars['orderby'] ) && 'is_active' == $vars['orderby'] ) {
+        $vars = array_merge( $vars, array(
+            'meta_key' => 'is_active',
+            'orderby' => 'meta_value'
+        ));
+    }
+    return $vars;
+}
+
+// Modify 'Teams' query when 'eliminated' column is sorted
+add_filter('request', 'teams_table_eliminated_column_orderby');
+function teams_table_eliminated_column_orderby( $vars )
+{
+    if ( isset( $vars['orderby'] ) && 'is_eliminated' == $vars['orderby'] ) {
+        $vars = array_merge( $vars, array(
+            'meta_key' => 'is_eliminated',
+            'orderby' => 'meta_value'
+        ));
+    }
+    return $vars;
+}
+
+/* FRIENDS ---------------------------*/
+
+// Create 'Friends' custom post type
+function friend_post_type()
+{
+    $labels = array(
+        'name' => __('Friends', 'FMAA'),
+        'singular_name' => __('Friend', 'FMAA'),
+        'add_new' => __('Add New', 'FMAA'),
+        'add_new_item' => __('Add New Friend', 'FMAA'),
+        'edit_item' => __('Edit Friend', 'FMAA'),
+        'new_item' => __('New Friend', 'FMAA'),
+        'all_items' => __('All Friends','FMAA'),
+        'view_item' => __('View Friend', 'FMAA'),
+        'search_items' => __('Search Friends', 'FMAA'),
+        'not_found' => __('No friends found', 'FMAA'),
+        'not_found_in_trash' => __('No friends found in Trash', 'FMAA'),
+        'menu_name' => 'Friends',
+    );
+
+    $supports = array(
+        'title',
+        'editor',
+        'page-attributes'
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => true,
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => 20,
+        'menu_icon' => 'dashicons-id-alt',
+        'can_export' => true,
+        'supports' => $supports,
+    );
+
+    register_post_type('friends', $args);
+}
+
+// Create new columns for 'Friends' admin table
+add_filter('manage_friends_posts_columns', 'friends_table_head');
+function friends_table_head( $defaults )
+{
+    unset($defaults['date']);
+    $defaults['is_active'] = 'Active';
+    $defaults['seed'] = 'Overall Seed';
+    $defaults['team_a'] = 'Team A';
+    $defaults['team_b'] = 'Team B';
+    return $defaults;
+}
+
+// Fill 'Friends' columns with content
+add_action('manage_friends_posts_custom_column', 'friends_table_content', 10, 2);
+function friends_table_content( $column_name, $post_id )
+{
+    $active = get_field('is_active');
+    $seed = get_field('seed');
+    $team_a = get_field('team_a');
+    $team_b = get_field('team_b');
+
+    if ( $column_name == 'is_active' ) {
+        if ( $active == 1 ) {
+            echo '<input type="checkbox" checked disabled>';
+            echo ' Yes';
+        }
+        else {
+            echo '<input type="checkbox" disabled>';
+            echo ' No';
+        }
+    }
+    if ( $column_name == 'seed' ) {
+        if ( $active == 1 ) {
+            echo $seed;
+        }
+        else {
+            echo '<span style="color:#aaa;">(N/A)</span>';
+        }
+    }
+    if ( $column_name == 'team_a' ) {
+        if ( $team_a ) {
+            echo get_the_title( $team_a->ID );
+        }
+        else {
+            echo '<span style="color:#aaa;">(none)</span>';
+        }
+    }
+    if ( $column_name == 'team_b' ) {
+        if ( $team_b ) {
+            echo get_the_title( $team_b->ID );
+        }
+        else {
+            echo '<span style="color:#aaa;">(none)</span>';
+        }
+    }
+}
+
+// Make 'Friends' columns sortable
+add_filter('manage_edit-friends_sortable_columns', 'friends_table_sorting');
+function friends_table_sorting( $columns )
+{
+    $columns['is_active'] = 'is_active';
+    $columns['seed'] = 'seed';
+    $columns['team_a'] = 'team_a';
+    $columns['team_b'] = 'team_b';
+    return $columns;
+}
+
+// Modify 'Friends' query when 'active' column is sorted
+add_filter('request', 'friends_table_active_column_orderby');
+function friends_table_active_column_orderby( $vars )
+{
+    if ( isset( $vars['orderby'] ) && 'is_active' == $vars['orderby'] ) {
+        $vars = array_merge( $vars, array(
+            'meta_key' => 'is_active',
+            'orderby' => 'meta_value'
+        ));
+    }
+    return $vars;
+}
+
+// Modify 'Friends' query when 'seed' column is sorted
+add_filter('request', 'friends_table_seed_column_orderby');
+function friends_table_seed_column_orderby( $vars )
+{
+    if ( isset( $vars['orderby'] ) && 'seed' == $vars['orderby'] ) {
+        $vars = array_merge( $vars, array(
+            'meta_key' => 'seed',
+            'orderby' => 'meta_value_num'
+        ));
+    }
+    return $vars;
+}
+
+// Modify 'Friends' query when 'team a' column is sorted
+add_filter('request', 'friends_table_team_a_column_orderby');
+function friends_table_team_a_column_orderby( $vars )
+{
+    if ( isset( $vars['orderby'] ) && 'team_a' == $vars['orderby'] ) {
+        $vars = array_merge( $vars, array(
+            'meta_key' => 'team_a',
+            'orderby' => 'meta_value'
+        ));
+    }
+    return $vars;
+}
+
+// Modify 'Friends' query when 'team b' column is sorted
+add_filter('request', 'friends_table_team_b_column_orderby');
+function friends_table_team_b_column_orderby( $vars )
+{
+    if ( isset( $vars['orderby'] ) && 'team_b' == $vars['orderby'] ) {
+        $vars = array_merge( $vars, array(
+            'meta_key' => 'team_b',
+            'orderby' => 'meta_value'
+        ));
+    }
+    return $vars;
+}
+
+/* CONFERENCES -----------------------*/
+
+// Create 'Conferences' taxonomy for 'Friends' post type
+function conference_taxonomy()
+{
+    $labels = array(
+        'name' => __('Conferences', 'FMAA'),
+        'singular_name' => __('Conference', 'FMAA'),
+        'search_items' => __('Search Conference', 'FMAA'),
+        'all_items' => __('All Conferences', 'FMAA'),
+        'parent_item' => __('', 'FMAA'),
+        'parent_item_colon' => __('', 'FMAA'),
+        'edit_item' => __('Edit Conference', 'FMAA'),
+        'update_item' => __('Update Conference', 'FMAA'),
+        'add_new_item' => __('Add New Conference', 'FMAA'),
+        'new_item_name' => __('New Conference Name', 'FMAA'),
+        'not_found' => __('No conferences found', 'FMAA'),
+        'no_terms' => __('No conference', 'FMAA'),
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'show_ui' => true,
+        'show_in_nav_menus' => true,
+        'hierarchical' => true,
+        'query_var' => true,
+        'rewrite' => false,
+    );
+
+    register_taxonomy('conference', 'friends', $args);
+}
+
+// Disable 'months' filter for 'Teams' and 'Friends' post types
+add_filter('disable_months_dropdown', 'teams_table_disable_months', 10, 2);
+function teams_table_disable_months( $false, $post_type )
+{
+    $disable_months_dropdown = $false;
+    
+    $disable_post_types = array( 'teams', 'friends' );
+    
+    if( in_array( $post_type , $disable_post_types ) ) {
+        
+        $disable_months_dropdown = true;
+        
+    }
+    
+    return $disable_months_dropdown;
+}
+
+/*------------------------------------*\
 	Actions + Filters + ShortCodes
 \*------------------------------------*/
 
@@ -717,6 +1261,7 @@ add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditi
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
+add_action('init', 'team_post_type'); // Add Team Post Type
 add_action('init', 'friend_post_type'); // Add Friend Post Type
 add_action('init', 'conference_taxonomy', 0); // Add Conference taxonomy
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
@@ -766,74 +1311,6 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 
 // Shortcodes above would be nested like this -
 // [html5_shortcode_demo] [html5_shortcode_demo_2] Here's the page title! [/html5_shortcode_demo_2] [/html5_shortcode_demo]
-
-
-/*------------------------------------*\
-	Custom Post Types
-\*------------------------------------*/
-
-// Create Friends custom post type
-function friend_post_type()
-{
-    register_post_type('friends',
-        array(
-        'labels' => array(
-            'name' => _x('Friends', 'friends'), // Rename these to suit
-            'singular_name' => _x('Friend', 'friends'),
-            'menu_name' => 'Friends',
-            'add_new' => _x('Add New', 'friends'),
-            'add_new_item' => __('Add New Friend', 'friends'),
-            'edit_item' => __('Edit Friend', 'friends'),
-            'new_item' => __('New Friend', 'friends'),
-            'view_item' => __('View Friend', 'friends'),
-            'search_items' => __('Search Friends', 'friends'),
-            'not_found' => __('No Friends found', 'friends'),
-            'not_found_in_trash' => __('No Friends found in Trash', 'friends'),
-            'parent_item_colon' => ''
-        ),
-        'public' => true,
-        'hierarchical' => false,
-        'menu_position' => 20,
-        'has_archive' => false,
-        'rewrite' => array('slug' => 'friends'),
-        'supports' => array(
-            'title',
-            'editor',
-            'page-attributes'
-        ),
-        'can_export' => true,
-        // 'taxonomies' => array(
-        //     'post_tag',
-        //     'category'
-        // )
-    ));
-}
-
-// Create 'conferences' taxonomy
-function conference_taxonomy()
-{
-    register_taxonomy('conference', 'friends',
-        array(
-        'labels' => array(
-            'name' => __('Conferences', 'conferences'),
-            'singular_name' => __('Conference', 'conferences'),
-            'search_items' => __('Search Conference', 'conferences'),
-            'all_items' => __('All Conferences'),
-            'parent_item' => __(''),
-            'parent_item_colon' => __(''),
-            'edit_item' => __('Edit Conference', 'conferences'),
-            'update_item' => __('Update Conference', 'conferences'),
-            'add_new_item' => __('Add New Conference', 'conferences'),
-            'new_item_name' => __('New Conference Name')
-        ),
-        'public' => true,
-        'show_ui' => true,
-        'show_in_nav_menus' => true,
-        'hierarchical' => true,
-        'query_var' => true,
-        'rewrite' => false
-    ));
-}
 
 /*------------------------------------*\
 	ShortCode Functions

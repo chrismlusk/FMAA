@@ -13,11 +13,12 @@
                      <img src="<?php the_field('photo'); ?>" />
                      <div class="header-text">
                         <h1>
-                           <span class="rank">(<?php echo tournament_seed(); ?>)</span>
+                           <span class="rank">(<?php echo get_the_tournament_seed(); ?>)</span>
                            <?php the_title(); ?>
-                           <span class="detail team">Team A, Team B</span>
+                           <span class="detail team">
+                              <span class="<?php echo get_the_team_status('team_a'); ?>"><?php echo get_the_team('team_a'); ?></span>, <span class="<?php echo get_the_team_status('team_b'); ?>"><?php echo get_the_team('team_b'); ?></span>
+                           </span>
                         </h1>
-                        <!-- <span class="detail team">Team A, Team B</span> -->
                         <ul class="icon-list">
                            <?php if ( get_field('twitter') ) : ?>
                               <li class="twitter"><?php echo link_to_twitter_username(); ?></li>
