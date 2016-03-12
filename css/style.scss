@@ -728,7 +728,7 @@ ul.icon-list {
          font-size: 1.85em;
       }
    }
-   p {
+   p, ul {
       color: $paragraph-text;
       font-family: $font-serif;
       font-size: 1.04em;
@@ -742,25 +742,25 @@ ul.icon-list {
          font-size: 1.24em;
          margin: 0 0 28px;
       }
-      &.lead {
-         background-color: darken($bg-color, 4%);
-         border: 1px solid darken($bg-color, 6%);
-         font-family: $font-sans;
-         font-size: 1.24em;
-         font-weight: 300;
-         margin: 0;
-         padding: 15px;
+   }
+   p.lead {
+      background-color: darken($bg-color, 4%);
+      border: 1px solid darken($bg-color, 6%);
+      font-family: $font-sans;
+      font-size: 1.24em;
+      font-weight: 300;
+      margin: 0;
+      padding: 15px;
+      @media #{$break-md} {
+         font-size: 1.34em;
+      }
+      @media #{$break-lg} {
+         font-size: 1.44em;
+      }
+      & + h4 {
+         margin-top: 30px;
          @media #{$break-md} {
-            font-size: 1.34em;
-         }
-         @media #{$break-lg} {
-            font-size: 1.44em;
-         }
-         & + h4 {
-            margin-top: 30px;
-            @media #{$break-md} {
-               margin-top: 60px;
-            }
+            margin-top: 60px;
          }
       }
    }
