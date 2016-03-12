@@ -1051,7 +1051,7 @@ function friend_post_type()
         'query_var' => true,
         'rewrite' => true,
         'capability_type' => 'post',
-        'has_archive' => true,
+        'has_archive' => false,
         'hierarchical' => false,
         'menu_position' => 20,
         'menu_icon' => 'dashicons-id-alt',
