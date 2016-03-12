@@ -98,9 +98,8 @@ function bracket_matchup( $region, $round, $top_seed=0, $btm_seed=0 )
         $style_2 = 'bold';
     }
 
-    if ( $round == 'final-4' ) {
-        // only output one team div
-        echo '<td' . $rowspan . ' class="round ' . $round . '">';
+    if ( $round == 'first' ) {
+        echo '<td class="round ' . $round . '">';
             echo '<div class="matchup">';
                 echo '<div class="team top">';
                     if ( $top_seed == 0 ) {
@@ -108,26 +107,8 @@ function bracket_matchup( $region, $round, $top_seed=0, $btm_seed=0 )
                     }
                     else {
                         echo '<span class="rank">' . $top_seed . '</span>';
-                        echo '<span class="name ' . $status_1 . ' ' . $style_1 . '">';
-                            echo get_the_team_and_friend( $region . '_' . $top_seed );
-                        echo '</span>';
-                    }
-                echo '</div>';
-            echo '</div>';
-        echo '</td>';
-    }
-    else {
-        // output full matchup
-        echo '<td' . $rowspan . ' class="round ' . $round . '">';
-            echo '<div class="matchup">';
-                echo '<div class="team top">';
-                    if ( $top_seed == 0 ) {
-                        echo '<span class="inactive">TBD</span>';
-                    }
-                    else {
-                        echo '<span class="rank">' . $top_seed . '</span>';
-                        echo '<span class="name ' . $status_1 . ' ' . $style_1 . '">';
-                            echo get_the_team_and_friend( $region . '_' . $top_seed );
+                        echo '<span class="name ' . $status_1 . ' ' . $style_1 . '" data-toggle="tooltip" data-placement="right" title="' . get_the_team( $region . '_' . $top_seed ) . '">';
+                            echo get_the_friend( $region . '_' . $top_seed );
                         echo '</span>';
                     }
                 echo '</div>';
@@ -137,8 +118,53 @@ function bracket_matchup( $region, $round, $top_seed=0, $btm_seed=0 )
                     }
                     else {
                         echo '<span class="rank">' . $btm_seed . '</span>';
-                        echo '<span class="name ' . $status_2 . ' ' . $style_2 . '">';
-                            echo get_the_team_and_friend( $region . '_' . $btm_seed );
+                        echo '<span class="name ' . $status_2 . ' ' . $style_2 . '" data-toggle="tooltip" data-placement="right" title="' . get_the_team( $region . '_' . $btm_seed ) . '">';
+                            echo get_the_friend( $region . '_' . $btm_seed );
+                        echo '</span>';
+                    }
+                echo '</div>';
+            echo '</div>';
+        echo '</td>';
+    }
+    elseif ( $round == 'final-4' ) {
+        echo '<td class="round ' . $round . '">';
+            echo '<div class="matchup">';
+                echo '<div class="team top">';
+                    if ( $top_seed == 0 ) {
+                        echo '<span class="inactive">TBD</span>';
+                    }
+                    else {
+                        echo '<span class="rank">' . $top_seed . '</span>';
+                        echo '<span class="name ' . $status_1 . ' ' . $style_1 . '" data-toggle="tooltip" data-placement="right" title="' . get_the_team( $region . '_' . $top_seed ) . '">';
+                            echo get_the_friend( $region . '_' . $top_seed );
+                        echo '</span>';
+                    }
+                echo '</div>';
+            echo '</div>';
+        echo '</td>';
+    }
+    else {
+        echo '<td class="round ' . $round . '">';
+            echo '<div class="matchup">';
+                echo '<div class="team top">';
+                    if ( $top_seed == 0 ) {
+                        echo '<span class="inactive">TBD</span>';
+                    }
+                    else {
+                        echo '<span class="rank">' . $top_seed . '</span>';
+                        echo '<span class="name ' . $status_1 . ' ' . $style_1 . '" data-toggle="tooltip" data-placement="right" title="' . get_the_team( $region . '_' . $top_seed ) . '">';
+                            echo get_the_friend( $region . '_' . $top_seed );
+                        echo '</span>';
+                    }
+                echo '</div>';
+                echo '<div class="team bottom">';
+                    if ( $btm_seed == 0 ) {
+                        echo '<span class="inactive">TBD</span>';
+                    }
+                    else {
+                        echo '<span class="rank">' . $btm_seed . '</span>';
+                        echo '<span class="name ' . $status_2 . ' ' . $style_2 . '" data-toggle="tooltip" data-placement="right" title="' . get_the_team( $region . '_' . $btm_seed ) . '">';
+                            echo get_the_friend( $region . '_' . $btm_seed );
                         echo '</span>';
                     }
                 echo '</div>';
@@ -1051,7 +1077,7 @@ function friend_post_type()
         'query_var' => true,
         'rewrite' => true,
         'capability_type' => 'post',
-        'has_archive' => false,
+        'has_archive' => true,
         'hierarchical' => false,
         'menu_position' => 20,
         'menu_icon' => 'dashicons-id-alt',

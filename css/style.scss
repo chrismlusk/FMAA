@@ -1573,15 +1573,28 @@ input[type=checkbox]:disabled {
    .bracket-wrap {
       background-color: darken($bg-color, 4%);
       border: 1px solid darken($bg-color, 6%);
-      padding: 10px 0 10px 10px;
+      padding: 5px;
    }
    .table {
-      font-size: 0.725em;
-      margin-bottom: -10px;
+      font-size: .9em;
       width: 100%;
+      @media #{$break-md} {
+         float: left;
+         font-size: 0.725em;
+         width: 20%;
+      }
+      @media #{$break-lg} {
+         font-size: .8em;
+      }
+      &+.table-test {
+         margin: 20px 0 0;
+         @media #{$break-md} {
+            margin: 0;
+         }
+      }
       >thead>tr>th {
          border-bottom: 0;
-         padding: 0 10px 10px 0;
+         padding: 5px;
          text-align: center;
          .label {
             background-color: $secondary;
@@ -1590,65 +1603,72 @@ input[type=checkbox]:disabled {
             font-size: 1.25em;
             font-weight: 400;
             padding: 12px 8px;
-            vertical-align: middle;
          }
       }
       >tbody+tbody { border: 0; }
       >tbody>tr>td,
-      >tbody>tr>th,
-      >tfoot>tr>td,
-      >tfoot>tr>th {
+      >tbody>tr>th {
          border-top: 0;
-         padding: 0 10px 0 0;
+         padding: 5px;
          vertical-align: middle;
       }
       tr {
          &.region {
                td {
+                  visibility: visible;
                   font-family: $font-header;
-                  font-size: 2.25em;
+                  font-size: 2em;
                   text-transform: capitalize;
-                  padding: 15px 0 10px;
+                  padding-top: 20px;
+                  @media #{$break-md} {
+                     visibility: hidden;
+                     font-size: 2.5em;
+                  }
                }
          }
       }
-      td {
-         width: 20%;
+   }
+   #first-round {
+      .region {
+         td {
+            visibility: visible;
+         }
       }
    }
    .matchup {
       background-color: darken($bg-color, 4%);
-      border-right: 2px solid $bracket-border;
-      margin-bottom: 10px;
+      border: 2px solid $bracket-border;
       position: relative;
+      @media #{$break-md} {
+         border-left: 0;
+      }
       span {
          display: block;
       }
    }
    .team {
       background-color: #fff;
-      border: 2px solid $bracket-border;
-      border-right: 0;
-      border-left: 0;
       color: $black-text;
-      padding: 4px 6px;
-      &.top {
-         border-bottom: 0;
+      cursor: default;
+      padding: 4px 10px;
+      @media #{$break-md} {
+         padding: 4px;
       }
-      &.bottom {
-         border-top: 0;
+      &+.team {
+         margin-top: 2px;
       }
       .inactive {
          color: rgba($gray-text, .4);
+         padding-left: 6px;
       }
       .rank {
          color: $gray-text-light;
          display: inline-block;
          font-size: .875em;
          font-weight: bold;
-         margin-right: 6px;
+         margin-right: 5px;
          text-align: right;
-         width: 12px;
+         width: 13px;
       }
       .name {
          display: inline-block;
@@ -1659,51 +1679,71 @@ input[type=checkbox]:disabled {
             font-weight: bold;
          }
       }
+      .tooltip {
+         font-family: $font-sans;
+         white-space: nowrap;
+         .tooltip-arrow {
+            border-right-color: $secondary;
+         }
+         .tooltip-inner {
+            background-color: $secondary;
+         }
+      }
    }
    .round {
       &.first{
-         .matchup {
-            border: 2px solid $bracket-border;
-            border-left: 0;
-            .team {
-               border: 0;
-               &+.team {
-                  margin-top: 2px;
-               }
-            }
+         @media #{$break-md} {
 
          }
       }
       &.second{
-         .matchup {
-            border: 2px solid $bracket-border;
-            border-left: 0;
+         @media #{$break-md} {
+            padding: 19px 5px;
             .team {
-               border: 0;
                &+.team {
                   margin-top: 40px;
                }
             }
          }
+         @media #{$break-lg} {
+            padding: 20px 5px;
+         }
       }
       &.sweet-16 {
-         .team {
-            &+.team {
-               margin-top: 110px;
+         @media #{$break-md} {
+            padding: 50px 5px;
+            .team {
+               &+.team {
+                  margin-top: 110px;
+               }
             }
+         }
+         @media #{$break-lg} {
+            padding: 53px 5px;
          }
       }
       &.elite-8 {
-         .team {
-            &+.team {
-               margin-top: 240px;
+         @media #{$break-md} {
+            padding: 117px 5px;
+            .team {
+               &+.team {
+                  margin-top: 240px;
+               }
             }
+         }
+         @media #{$break-lg} {
+            padding: 124px 5px;
          }
       }
       &.final-4 {
-         .team {
-            border: 2px solid $bracket-border;
-            border-right: 0;
+         @media #{$break-md} {
+            padding: 249px 5px;
+            .matchup {
+               border: 2px solid $bracket-border;
+            }
+         }
+         @media #{$break-lg} {
+            padding: 256px 5px;
          }
       }
    }

@@ -39,6 +39,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <?php wp_footer(); ?>
 
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
+
 <!-- Twitter widget -->
 <script>
 window.twttr = (function(d, s, id) {

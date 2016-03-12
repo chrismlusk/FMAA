@@ -1,6 +1,6 @@
 <?php 
 
-/* Template Name: Bracket */ 
+/* Template Name: Bracket Test */ 
 
 get_header();
 
@@ -250,22 +250,22 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 1/16 vs 8/9 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 9 );
                               ?>
                            </tr>
                            <tr><!-- 5/12 vs 4/13 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 5, 13 );
                               ?>
                            </tr>
                            <tr><!-- 6/11 vs 3/14 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 6, 3 );
                               ?>
                            </tr>
                            <tr><!-- 7/10 vs 2/15 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 10, 15 );
                               ?>
                            </tr>
                         </tbody>
@@ -278,22 +278,22 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 1/16 vs 8/9 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 9 );
                               ?>
                            </tr>
                            <tr><!-- 5/12 vs 4/13 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 5, 13 );
                               ?>
                            </tr>
                            <tr><!-- 6/11 vs 3/14 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 6, 3 );
                               ?>
                            </tr>
                            <tr><!-- 7/10 vs 2/15 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 10, 15 );
                               ?>
                            </tr>
                         </tbody>
@@ -306,22 +306,22 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 1/16 vs 8/9 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 9 );
                               ?>
                            </tr>
                            <tr><!-- 5/12 vs 4/13 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 5, 13 );
                               ?>
                            </tr>
                            <tr><!-- 6/11 vs 3/14 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 6, 3 );
                               ?>
                            </tr>
                            <tr><!-- 7/10 vs 2/15 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 10, 15 );
                               ?>
                            </tr>
                         </tbody>
@@ -334,22 +334,22 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 1/16 vs 8/9 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 9 );
                               ?>
                            </tr>
                            <tr><!-- 5/12 vs 4/13 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 5, 13 );
                               ?>
                            </tr>
                            <tr><!-- 6/11 vs 3/14 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 6, 3 );
                               ?>
                            </tr>
                            <tr><!-- 7/10 vs 2/15 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 10, 15 );
                               ?>
                            </tr>
                         </tbody>
@@ -372,12 +372,12 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 1/16/8/9 vs 5/12/4/13 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 13 );
                               ?>
                            </tr>
                            <tr><!-- 6/11/3/14 vs 7/10/2/15 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 6, 15 );
                               ?>
                            </tr>
                         </tbody>
@@ -390,12 +390,12 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 1/16/8/9 vs 5/12/4/13 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 13 );
                               ?>
                            </tr>
                            <tr><!-- 6/11/3/14 vs 7/10/2/15 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 6, 15 );
                               ?>
                            </tr>
                         </tbody>
@@ -408,12 +408,12 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 1/16/8/9 vs 5/12/4/13 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 13 );
                               ?>
                            </tr>
                            <tr><!-- 6/11/3/14 vs 7/10/2/15 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 6, 15 );
                               ?>
                            </tr>
                         </tbody>
@@ -426,12 +426,12 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 1/16/8/9 vs 5/12/4/13 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 13 );
                               ?>
                            </tr>
                            <tr><!-- 6/11/3/14 vs 7/10/2/15 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 6, 15 );
                               ?>
                            </tr>
                         </tbody>
@@ -454,7 +454,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- final two seeds -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 13 );
                               ?>
                            </tr>
                         </tbody>
@@ -467,7 +467,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- final two seeds -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 13 );
                               ?>
                            </tr>
                         </tbody>
@@ -480,7 +480,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- final two seeds -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 13 );
                               ?>
                            </tr>
                         </tbody>
@@ -493,7 +493,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- final two seeds -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 13 );
                               ?>
                            </tr>
                         </tbody>
@@ -516,7 +516,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- region winner -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 0 );
                               ?>
                            </tr>
                         </tbody>
@@ -529,7 +529,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- region winner -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 0 );
                               ?>
                            </tr>
                         </tbody>
@@ -542,7 +542,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- region winner -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 0 );
                               ?>
                            </tr>
                         </tbody>
@@ -555,7 +555,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- region winner -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 16, 0 );
                               ?>
                            </tr>
                         </tbody>
