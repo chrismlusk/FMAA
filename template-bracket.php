@@ -74,7 +74,7 @@ $posts = get_posts( array(
                                  <!-- final 4: region winner -->
                                  <?php 
                                     $round = 'final-4';
-                                    bracket_matchup( $region, $round, 0, 0 );
+                                    bracket_matchup( $region, $round, 0 );
                                  ?>
                               </tr>
                               <tr>
@@ -189,7 +189,7 @@ $posts = get_posts( array(
                                  <!-- final 4: region winner -->
                                  <?php 
                                     $round = 'final-4';
-                                    bracket_matchup( $region, $round, 0, 0 );
+                                    bracket_matchup( $region, $round, 0 );
                                  ?>
                               </tr>
                               <tr>
@@ -304,7 +304,7 @@ $posts = get_posts( array(
                                  <!-- final 4: region winner -->
                                  <?php 
                                     $round = 'final-4';
-                                    bracket_matchup( $region, $round, 0, 0 );
+                                    bracket_matchup( $region, $round, 0 );
                                  ?>
                               </tr>
                               <tr>
@@ -419,7 +419,7 @@ $posts = get_posts( array(
                                  <!-- final 4: region winner -->
                                  <?php 
                                     $round = 'final-4';
-                                    bracket_matchup( $region, $round, 0, 0 );
+                                    bracket_matchup( $region, $round, 0 );
                                  ?>
                               </tr>
                               <tr>
