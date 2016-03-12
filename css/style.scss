@@ -1569,11 +1569,12 @@ input[type=checkbox]:disabled {
    }
 }
 
-
-.bracket-wrap {
-   background-color: darken($bg-color, 4%);
-   border: 1px solid darken($bg-color, 6%);
-   padding: 10px 0 10px 10px;
+#bracket{
+   .bracket-wrap {
+      background-color: darken($bg-color, 4%);
+      border: 1px solid darken($bg-color, 6%);
+      padding: 10px 0 10px 10px;
+   }
    .table {
       font-size: 0.725em;
       margin-bottom: -10px;
