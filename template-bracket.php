@@ -13,7 +13,7 @@ $posts = get_posts( array(
    <main id="grid" role="main">
 
       <!-- section -->
-      <section id="" class="flex-container">
+      <section id="bracket" class="flex-container">
          <div class="flex-item">
             <div class="inner-wrap">
 
