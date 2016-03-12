@@ -74,7 +74,7 @@ function override_disabled_input()
 }
 
 // Output bracket matchup (single game at a time)
-function bracket_matchup( $region, $round, $top_seed, $btm_seed )
+function bracket_matchup( $region, $round, $top_seed=0, $btm_seed=0 )
 {
     switch ( $round ) {
         case 'second':
