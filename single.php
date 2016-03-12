@@ -44,7 +44,7 @@
                <div class="inner-wrap">
 
                   <!-- article -->
-                  <article id="post-<?php the_ID(); ?>" class="article">
+                  <article id="" class="article">
 
                      <!-- post thumbnail -->
                      <?php if ( has_post_thumbnail() ): 
