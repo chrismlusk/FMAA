@@ -12,7 +12,7 @@ $posts = get_posts( array(
    'order' => 'ASC'
 )); ?>
 
-   <main id="grid" role="main"> 
+   <main id="grid" role="main">
 
       <!-- section -->
       <section id="friends" class="flex-container">
@@ -39,7 +39,9 @@ $posts = get_posts( array(
                      <div class="flex-item friend-wrapper <?php echo friend_inactive(); ?>">
                         <div class="inner-wrap">
                            <a href="<?php the_permalink(); ?>">
-                              <img src="<?php the_field('photo'); ?>" />
+                              <?php if ( get_field('photo') ) : ?>
+                                 <img src="<?php the_field('photo'); ?>" />
+                              <?php endif; ?>
                               <div class="friend-info">
                                  <span class="name">
                                     <span class="rank">(<?php echo get_the_tournament_seed(); ?>)</span> <?php the_title(); ?>

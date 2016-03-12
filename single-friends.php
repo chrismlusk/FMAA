@@ -10,7 +10,9 @@
             <div class="flex-item friend-wrapper">
                <div class="inner-wrap">
                   <header class="friend-header article clearfix">
-                     <img src="<?php the_field('photo'); ?>" />
+                     <?php if ( get_field('photo') ) : ?>
+                        <img src="<?php the_field('photo'); ?>" />
+                     <?php endif; ?>
                      <div class="header-text">
                         <h1>
                            <span class="rank">(<?php echo get_the_tournament_seed(); ?>)</span>

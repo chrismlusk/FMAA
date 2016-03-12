@@ -150,12 +150,14 @@ get_header(); ?>
                         <figure class="bg-image visible-xs" 
                         style="background-image:url('<?php echo $img_url; ?>')"></figure>
                         <h2><?php the_title(); ?></h2>
-                        <figure class="slot-image hidden-xs">
-                           <div class="aspect-ratio"></div>
-                           <div class="img-wrap">
-                              <img src="<?php echo $img_url; ?>" alt="<?php the_title(); ?>" />
-                           </div>
-                        </figure>
+                        <?php if ( $img_url ) : ?>
+                           <figure class="slot-image hidden-xs">
+                              <div class="aspect-ratio"></div>
+                              <div class="img-wrap">
+                                 <img src="<?php echo $img_url; ?>" alt="<?php the_title(); ?>" />
+                              </div>
+                           </figure>
+                        <?php endif; ?>
                      </a>
                      <p><?php the_field('summary'); ?></p>
                   </article>
@@ -168,7 +170,6 @@ get_header(); ?>
             <h1>No articles to post</h1>
 
          <?php endif; ?>
-
       </section>
       <!-- /articles -->
 
@@ -207,7 +208,9 @@ get_header(); ?>
 
                            <a href="<?php the_permalink(); ?>" class="carousel-item">
                               <div class="friend-wrapper <?php echo friend_inactive(); ?>">
-                                 <img src="<?php the_field('photo'); ?>" />
+                                 <?php if ( get_field('photo') ) : ?>
+                                    <img src="<?php the_field('photo'); ?>" />
+                                 <?php endif; ?>
                                  <div class="friend-info">
                                     <span class="name">
                                        <span class="rank">
