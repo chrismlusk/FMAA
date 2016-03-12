@@ -42,7 +42,7 @@ $posts = get_posts( array(
                               <?php if ( get_field('photo') ) : ?>
                                  <img src="<?php the_field('photo'); ?>" />
                               <?php else : ?>
-                                 <img src="<?php echo get_template_directory_uri(); ?>/img/gravatar.jpg ?>" />
+                                 <img src="<?php echo get_template_directory_uri(); ?>/img/gravatar.jpg" />
                               <?php endif; ?>
                               <div class="friend-info">
                                  <span class="name">
