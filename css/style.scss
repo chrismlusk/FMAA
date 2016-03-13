@@ -1602,6 +1602,7 @@ input[type=checkbox]:disabled {
    }
    .table {
       font-size: .9em;
+      margin-bottom: 0;
       width: 100%;
       @media #{$break-md} {
          float: left;
@@ -1611,7 +1612,7 @@ input[type=checkbox]:disabled {
       @media #{$break-lg} {
          font-size: .8em;
       }
-      &+.table-test {
+      &+.table {
          margin: 20px 0 0;
          @media #{$break-md} {
             margin: 0;
