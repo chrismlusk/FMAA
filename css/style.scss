@@ -427,10 +427,14 @@ ul.icon-list {
          background-color: $link;
          border-color: transparent;
          color: #fff;
+         font-family: $font-sans;
+         font-size: .9em;
+         font-weight: 300;
          &:visited {
             background-color: $link;
          }
-         &:hover {
+         &:hover,
+         &:focus {
             background-color: $link-hover;
          }
       }
@@ -781,7 +785,8 @@ ul.icon-list {
          font-weight: bold;
          line-height: 1.35;
       }
-      &.twitter-tweet {
+      &.twitter-tweet,
+      &.default {
          font-size: 1em;
          p {
             color: $gray-text;

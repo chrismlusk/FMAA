@@ -75,8 +75,8 @@ $wp_query = $the_query;
                   <nav class="article" style="margin-top: 0;">
                      <ul class="pager">
                         <li class="previous"><?php
-                     previous_posts_link( '<span aria-hidden="true">&larr;</span>Older Stories' ); ?></li>
-                        <li class="next"><?php next_posts_link( 'Newer Stories <span aria-hidden="true">&rarr;</span>', $the_query->max_num_pages ); ?></li>
+                     previous_posts_link( '<span aria-hidden="true">&larr;</span> Newer Stories' ); ?></li>
+                        <li class="next"><?php next_posts_link( 'Older Stories <span aria-hidden="true">&rarr;</span>', $the_query->max_num_pages ); ?></li>
                      </ul>
                   </nav>
                <?php endif; ?>
