@@ -10,7 +10,7 @@
                <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
                   <!-- article -->
-                  <article id="post-<?php the_ID(); ?>" class="article">
+                  <article id="post-layout" class="article">
 
                   <h1><?php the_title(); ?></h1>
 
