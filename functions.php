@@ -515,7 +515,7 @@ function get_the_tournament_seed()
     elseif ( $seed < 9 && $seed > 4 ) {
         $bracket_seed = 2;
     }
-    elseif ( $seed == 1 ) {
+    elseif ( $seed < 5 && $seed > 0 ) {
         $bracket_seed = 1;
     }
     return $bracket_seed;
