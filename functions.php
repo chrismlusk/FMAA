@@ -615,7 +615,7 @@ function reading_time()
     $word_count = str_word_count( strip_tags( $content ) );
     $calculate_time = round($word_count) / 225;
     if ( $calculate_time > 0 ) {
-        return $calculate_time;
+        return round($calculate_time);
     }
 }
 
