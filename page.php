@@ -3,14 +3,14 @@
    <main id="grid" role="main">
 
       <!-- section -->
-      <section id="default" class="flex-container">
+      <section id="post-layout" class="flex-container">
          <div class="flex-item primary-slot">
             <div class="inner-wrap">
 
                <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
                   <!-- article -->
-                  <article id="post-layout" class="article">
+                  <article id="post-<?php the_ID(); ?>" class="article">
 
                   <h1><?php the_title(); ?></h1>
 
