@@ -185,16 +185,21 @@ function write_friend_lead()
     // begin paragraph with first name
     echo get_first_name() . ' is ';
 
-    // put correct article before seed
-    if ( get_the_tournament_seed() == 8 ) {
-        echo 'an ';
+    if ( get_the_tournament_seed() ) {
+        // put correct article before seed
+        if ( get_the_tournament_seed() == 8 ) {
+            echo 'an ';
+        }
+        else {
+            echo 'a ';
+        }
+
+        // write seed, conference and teams
+        echo get_the_tournament_seed() . '-seed from ' . the_friend_conference() . ' and is leading ' . $team_a . ' and ' . $team_b . ' in the tournament.';
     }
     else {
-        echo 'a ';
+        echo 'from ' . the_friend_conference() . ' but did not make the tournament this year.';
     }
-
-    // write seed, conference and teams
-    echo get_the_tournament_seed() . '-seed from ' . the_friend_conference() . ' and is leading ' . $team_a . ' and ' . $team_b . ' in the tournament.';
 
     // check if friend has won title or MVP
     if ( get_field('title_history') || get_field('mvp_history') ) {
@@ -236,9 +241,13 @@ function write_friend_lead()
     }
 
     // count tournament appearances
-    if ( $fmaa_history ) {
+    if ( $fmaa_history && get_the_tournament_seed() ) {
         echo ' ' . get_first_name() . ' is in the Friendship Madness field for the ' . convert_num_to_ordinal( $fmaa_history ) . ' time this year.';
     }
+    elseif ( $fmaa_history && !get_the_tournament_seed() ) {
+        echo ' ' . get_first_name() . ' qualified for Friendship Madness in ' . implode(' and ', get_field('fmaa_history')) . '.';
+    }
+    
 }
 
 // Convert integers to ordinal numbers
@@ -408,7 +417,9 @@ function get_the_team_short_name( $var )
 function get_the_team( $var )
 {
     $var = get_field($var);
-    return get_the_title( $var->ID );
+    if ( $var ) {
+        return get_the_title( $var->ID );
+    }
 }
 
 // Find out if team has advanced, and if so, to what round
@@ -504,7 +515,7 @@ function get_the_tournament_seed()
     elseif ( $seed < 9 && $seed > 4 ) {
         $bracket_seed = 2;
     }
-    else {
+    elseif ( $seed == 1 ) {
         $bracket_seed = 1;
     }
     return $bracket_seed;
@@ -602,7 +613,10 @@ function reading_time()
 {
     $content = get_post_field( 'post_content', $post->ID );
     $word_count = str_word_count( strip_tags( $content ) );
-    return round($word_count / 225);
+    $calculate_time = round($word_count) / 225;
+    if ( $calculate_time > 0 ) {
+        return $calculate_time;
+    }
 }
 
 // HTML5 Blank navigation

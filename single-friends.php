@@ -17,11 +17,16 @@
                      <?php endif; ?>
                      <div class="header-text">
                         <h1>
-                           <span class="rank">(<?php echo get_the_tournament_seed(); ?>)</span>
+                           <?php if ( get_the_tournament_seed() ) : ?>
+                              <span class="rank">(<?php echo get_the_tournament_seed(); ?>)</span>
+                           <?php endif; ?>
                            <?php the_title(); ?>
-                           <span class="detail team">
-                              <span class="<?php echo get_the_team_status('team_a'); ?>"><?php echo get_the_team('team_a'); ?></span>, <span class="<?php echo get_the_team_status('team_b'); ?>"><?php echo get_the_team('team_b'); ?></span>
-                           </span>
+                           <?php if ( get_the_team('team_a') && get_the_team('team_b') ) : ?>
+                              <span class="detail team">
+                                 <span class="<?php echo get_the_team_status('team_a'); ?>"><?php echo get_the_team('team_a'); ?></span>, <span class="<?php echo get_the_team_status('team_b'); ?>"><?php echo get_the_team('team_b'); ?></span>
+                              </span>
+                           <?php endif; ?>
+
                         </h1>
                         <ul class="icon-list">
                            <?php if ( get_field('twitter') ) : ?>
