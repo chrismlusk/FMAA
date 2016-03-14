@@ -20,26 +20,7 @@
                            <span class="rank">(<?php echo get_the_tournament_seed(); ?>)</span>
                            <?php the_title(); ?>
                            <span class="detail team">
-                              <span class="<?php echo get_the_team_status('team_a'); ?>">
-                                 <?php 
-                                    if ( get_the_team('team_a') ) {
-                                    echo get_the_team('team_a'); 
-                                    }
-                                    else {
-                                       echo '(Team N/A)';
-                                    }
-                                 ?>
-                              </span>, 
-                              <span class="<?php echo get_the_team_status('team_b'); ?>">
-                                 <?php 
-                                    if ( get_the_team('team_b') ) {
-                                    echo get_the_team('team_b'); 
-                                    }
-                                    else {
-                                       echo '(Team N/A)';
-                                    }
-                                 ?>
-                              </span>
+                              <span class="<?php echo get_the_team_status('team_a'); ?>"><?php echo get_the_team('team_a'); ?></span>, <span class="<?php echo get_the_team_status('team_b'); ?>"><?php echo get_the_team('team_b'); ?></span>
                            </span>
                         </h1>
                         <ul class="icon-list">

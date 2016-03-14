@@ -26,6 +26,14 @@ $posts = get_posts( array(
                <!-- article -->
                <article class="article">
 
+                  <?php if ( get_the_content() ) : ?>
+                     <div class="hidden-xs" style="font-size:90%;">
+                        <span class="fa fa-file-pdf-o" style="margin-right: 4px;"></span>
+                        <?php echo get_the_content(); ?>
+                        <br /><br />
+                     </div>
+                  <?php endif; ?>
+
                   <div class="bracket-wrap">
                   <table width="100%">
                      <tr>
@@ -40,8 +48,8 @@ $posts = get_posts( array(
                            </tr>
                         </thead>
 
-                        <!-- 1. midwest region-->
-                        <?php $region = 'midwest'; ?>
+                        <!-- 1. south region -->
+                        <?php $region = 'south'; ?>
                         <tbody>
                            <tr class="region">
                               <td><?php echo $region; ?></td>
@@ -88,7 +96,7 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 2. west region-->
+                        <!-- 2. west region -->
                         <?php $region = 'west'; ?>
                         <tbody>
                            <tr class="region">
@@ -136,7 +144,7 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 3. east region-->
+                        <!-- 3. east region -->
                         <?php $region = 'east'; ?>
                         <tbody>
                            <tr class="region">
@@ -184,8 +192,8 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 4. south region-->
-                        <?php $region = 'south'; ?>
+                        <!-- 4. midwest region -->
+                        <?php $region = 'midwest'; ?>
                         <tbody>
                            <tr class="region">
                               <td><?php echo $region; ?></td>
@@ -242,8 +250,8 @@ $posts = get_posts( array(
                            </tr>
                         </thead>
 
-                        <!-- 1. midwest region-->
-                        <?php $region = 'midwest'; ?>
+                        <!-- 1. south region -->
+                        <?php $region = 'south'; ?>
                         <tbody>
                            <tr class="region">
                               <td><?php echo $region; ?></td>
@@ -270,7 +278,7 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 2. west region-->
+                        <!-- 2. west region -->
                         <?php $region = 'west'; ?>
                         <tbody>
                            <tr class="region">
@@ -298,7 +306,7 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 3. east region-->
+                        <!-- 3. east region -->
                         <?php $region = 'east'; ?>
                         <tbody>
                            <tr class="region">
@@ -326,8 +334,8 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 1. south region-->
-                        <?php $region = 'south'; ?>
+                        <!-- 4. midwest region -->
+                        <?php $region = 'midwest'; ?>
                         <tbody>
                            <tr class="region">
                               <td><?php echo $region; ?></td>
@@ -364,8 +372,8 @@ $posts = get_posts( array(
                            </tr>
                         </thead>
 
-                        <!-- 1. midwest region-->
-                        <?php $region = 'midwest'; ?>
+                        <!-- 1. south region -->
+                        <?php $region = 'south'; ?>
                         <tbody>
                            <tr class="region">
                               <td><?php echo $region; ?></td>
@@ -382,7 +390,7 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 2. west region-->
+                        <!-- 2. west region -->
                         <?php $region = 'west'; ?>
                         <tbody>
                            <tr class="region">
@@ -400,7 +408,7 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 3. east region-->
+                        <!-- 3. east region -->
                         <?php $region = 'east'; ?>
                         <tbody>
                            <tr class="region">
@@ -418,8 +426,8 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 4. south region-->
-                        <?php $region = 'south'; ?>
+                        <!-- 4. midwest region -->
+                        <?php $region = 'midwest'; ?>
                         <tbody>
                            <tr class="region">
                               <td><?php echo $region; ?></td>
@@ -446,8 +454,8 @@ $posts = get_posts( array(
                            </tr>
                         </thead>
 
-                        <!-- 1. midwest region-->
-                        <?php $region = 'midwest'; ?>
+                        <!-- 1. south region -->
+                        <?php $region = 'south'; ?>
                         <tbody>
                            <tr class="region">
                               <td><?php echo $region; ?></td>
@@ -459,7 +467,7 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 2. west region-->
+                        <!-- 2. west region -->
                         <?php $region = 'west'; ?>
                         <tbody>
                            <tr class="region">
@@ -472,7 +480,7 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 3. east region-->
+                        <!-- 3. east region -->
                         <?php $region = 'east'; ?>
                         <tbody>
                            <tr class="region">
@@ -485,8 +493,8 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 4. south region-->
-                        <?php $region = 'south'; ?>
+                        <!-- 4. midwest region -->
+                        <?php $region = 'midwest'; ?>
                         <tbody>
                            <tr class="region">
                               <td><?php echo $region; ?></td>
@@ -507,9 +515,9 @@ $posts = get_posts( array(
                               <th><span class="label">Friendly Four</span></th>
                            </tr>
                         </thead>
-                        
-                        <!-- 1. midwest region-->
-                        <?php $region = 'midwest'; ?>
+
+                        <!-- 1. south region -->
+                        <?php $region = 'south'; ?>
                         <tbody>
                            <tr class="region">
                               <td><?php echo $region; ?></td>
@@ -521,7 +529,7 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 2. west region-->
+                        <!-- 2. west region -->
                         <?php $region = 'west'; ?>
                         <tbody>
                            <tr class="region">
@@ -534,7 +542,7 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 3. east region-->
+                        <!-- 3. east region -->
                         <?php $region = 'east'; ?>
                         <tbody>
                            <tr class="region">
@@ -547,8 +555,8 @@ $posts = get_posts( array(
                            </tr>
                         </tbody>
 
-                        <!-- 4. south region-->
-                        <?php $region = 'south'; ?>
+                        <!-- 4. midwest region -->
+                        <?php $region = 'midwest'; ?>
                         <tbody>
                            <tr class="region">
                               <td><?php echo $region; ?></td>
