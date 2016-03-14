@@ -40,5 +40,24 @@
             >Tweets by @FriendMadness</a>
       </div>
    </div>
+   <div class="flex-item nested announcements-slot">
+      <div class="inner-wrap">
+         <span class="kicker">Tourney history</span>
+         <h4>Best Friends</h4>
+         <ul class="default-list">
+            <li><strong>2011:</strong> Curtis Gambill</li>
+            <li><strong>2012:</strong> Max Calanni</li>
+            <li><strong>2013:</strong> Chris Lusk</li>
+            <li><strong>2014:</strong> Shelby Lollis</li>
+            <li><strong>2015:</strong> Chris Lusk</li>
+         </ul>
+         <h4>Social Media MVP</h4>
+         <ul class="default-list">
+            <li><strong>2013:</strong> Jake Lovett &amp; Chris Lusk</li>
+            <li><strong>2014:</strong> Luke McConnell</li>
+            <li><strong>2015:</strong> Jessie Opoien</li>
+         </ul>
+      </div>
+   </div>
 </aside>
 <!-- /sidebar -->

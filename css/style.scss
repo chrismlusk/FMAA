@@ -232,6 +232,11 @@ $grid-pad:           5px;
       h4 {
          margin: 10px 0;
       }
+      p, ul {
+         &+h4 {
+            margin-top: 20px;
+         }
+      }
    }
 }
 
@@ -310,62 +315,68 @@ img {
       }
    }
 }
-ul.icon-list {
-   padding: 0;
-   li {
-      color: $black-text;
-      display: block;
-      margin: 0 0 .625em;
-      padding-left: 1.750em;
-      &:last-child {
-         margin: 0;
-      }
-      &:before {
-         content: "\e023";
-         color: $gray-text;
-         font-family: 'FontAwesome';
-         font-size: 1.125em;
-         float: left;
-         margin-top: -0.063em;
-         margin-left: -1.5em;
-      }
-      &.time {
-         &:before {
-            content: "\f017";
+ul {
+   margin-bottom: 0;
+   &.default-list {
+      padding-left: 20px;
+   }
+   &.icon-list {
+      padding: 0;
+      li {
+         color: $black-text;
+         display: block;
+         margin: 0 0 .625em;
+         padding-left: 1.750em;
+         &:last-child {
+            margin: 0;
          }
-      }
-      &.twitter {
          &:before {
-            content: "\f099";
+            content: "\e023";
+            color: $gray-text;
+            font-family: 'FontAwesome';
+            font-size: 1.125em;
+            float: left;
+            margin-top: -0.063em;
+            margin-left: -1.5em;
          }
-      }
-      &.trophy {
-         &:before {
-            content: "\f091";
+         &.time {
+            &:before {
+               content: "\f017";
+            }
          }
-      }
-      &.plus {
-         &:before {
-            content: "\f055";
+         &.twitter {
+            &:before {
+               content: "\f099";
+            }
          }
-      }
-      &.tag {
-         &:before {
-            content: "\f02b";
+         &.trophy {
+            &:before {
+               content: "\f091";
+            }
          }
-      }
-      &.basketball {
-         &:before {
-            content: "\f17d";
+         &.plus {
+            &:before {
+               content: "\f055";
+            }
          }
-      }
-      &.star {
-         &:before {
-            content: "\f005";
+         &.tag {
+            &:before {
+               content: "\f02b";
+            }
          }
-      }
-      a {
-         font-weight: bold;
+         &.basketball {
+            &:before {
+               content: "\f17d";
+            }
+         }
+         &.star {
+            &:before {
+               content: "\f005";
+            }
+         }
+         a {
+            font-weight: bold;
+         }
       }
    }
 }
@@ -1516,53 +1527,55 @@ input[type=checkbox]:disabled {
    }
 }
 #post-layout { // for news articles
-   h2, h3 {
-      font-size: 1.5em;
-      font-weight: bold;
-      margin: 31.5px 0 10.5px;
-      @media #{$break-md} {
-         font-size: 1.7em;
-      }
-      @media #{$break-lg} {
-         font-size: 2em;
-         margin: 42px 0 14px;
-      }
-   }
-   p {
-      &:first-of-type:first-letter {
-         float: left;
-         color: $spot-color;
-         font-size: 5.1em;
-         line-height: 70px;
-         padding: 2px 10px 0 0;
-         font-family: $font-header;
+   .article {
+      h2, h3 {
+         font-size: 1.5em;
+         font-weight: bold;
+         margin: 31.5px 0 10.5px;
          @media #{$break-md} {
-            font-size: 5.4em;
-            padding: 5px 12px 0 0;
+            font-size: 1.7em;
          }
          @media #{$break-lg} {
-            font-size: 5.6em;
-            padding: 12px 14px 0 0;
+            font-size: 2em;
+            margin: 42px 0 14px;
          }
       }
-   }
-   blockquote {
       p {
          &:first-of-type:first-letter {
-            color: inherit;
-            font-size: inherit;
-            line-height: inherit;
-            padding: 0;
-            font-family: inherit;
+            float: left;
+            color: $spot-color;
+            font-size: 5.1em;
+            line-height: 70px;
+            padding: 2px 10px 0 0;
+            font-family: $font-header;
+            @media #{$break-md} {
+               font-size: 5.4em;
+               padding: 5px 12px 0 0;
+            }
+            @media #{$break-lg} {
+               font-size: 5.6em;
+               padding: 12px 14px 0 0;
+            }
          }
       }
-   }
-   hr {
-      border-color: $gray-border;
-      border-color: darken($gray-border, 2%);
-      margin: 21px 0;
-      @media #{$break-lg} {
-         margin: 28px 0;
+      blockquote {
+         p {
+            &:first-of-type:first-letter {
+               color: inherit;
+               font-size: inherit;
+               line-height: inherit;
+               padding: 0;
+               font-family: inherit;
+            }
+         }
+      }
+      hr {
+         border-color: $gray-border;
+         border-color: darken($gray-border, 2%);
+         margin: 21px 0;
+         @media #{$break-lg} {
+            margin: 28px 0;
+         }
       }
    }
 }

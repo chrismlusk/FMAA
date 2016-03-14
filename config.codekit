@@ -119,6 +119,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/img\/gravatar.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 13600,
+		"inputAbbreviatedPath": "\/img\/gravatar.jpg",
+		"outputAbbreviatedPath": "\/img\/gravatar.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/img\/icons\/touch.png": {
 		"fileType": 32768,
 		"ignore": 0,
