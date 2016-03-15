@@ -922,6 +922,7 @@ ul {
    }
    &.no-btm-pad {
       padding-bottom: 0;
+      width: auto;
    }
 }
 .twitter-tweet {
@@ -929,7 +930,7 @@ ul {
    width: 100%;
 }
 input[type=checkbox]:disabled {
-   opacity: .9;
+   opacity: .88;
 }
 
 
