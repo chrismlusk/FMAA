@@ -55,7 +55,7 @@ get_header(); ?>
                            We tweet at <a href="https://twitter.com/FriendMadness" target="_blank">@FriendMadness</a>, so follow and use the hashtag #FMAA16
                         </li>
                         <li class="trophy">
-                           Fill out and submit an <a href="bracket">FMAA bracket</a> before the tournament tips off
+                           Fill out and submit an <a href="http://friendshipmadness.com/wp-content/uploads/2016/03/2016-bracket.pdf" target="_blank">FMAA bracket</a> before the tournament tips off
                         </li>
                         <li class="plus">
                            Download our official <a href="https://chrome.google.com/webstore/detail/friendship-madness/ljeefnijldbmngpomnkdiklijedmkmck?hl=en-US" target="_blank">Chrome extension</a> and make the web friendlier
@@ -75,7 +75,8 @@ get_header(); ?>
             <?php
 
             query_posts(array(
-               'category_name' => 'Featured'
+               'category_name' => 'Featured',
+               'posts_per_page' => 1
             ));
             if (have_posts()): while (have_posts()) : the_post();
                $img_url = wp_get_attachment_url( get_post_thumbnail_id() );

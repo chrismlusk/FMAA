@@ -5,7 +5,7 @@
 
                <div class="footer-logo"></div>
                <ul class="footer-links">
-                  <li><a href="#">About us</a></li>
+                  <li><a href="/about/">About us</a></li>
                   <li><a href="#">Advertise with us</a></li>
                   <li><a href="#">Customer Support</a></li>
                   <li><a href="#">Privacy Policy</a></li>
@@ -13,7 +13,7 @@
                </ul>
                <div class="copyright">
                   <span class="caps">&copy; 2011-<?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</span>
-                  <span>FriendshipMadness.com is designed and developed by <a href="#" target="_blank">Chris Lusk</a>.</span>
+                  <span>FriendshipMadness.com is designed and developed by <a href="http://chrislusk.me" target="_blank">Chris Lusk</a>.</span>
                </div>
 
             </div>
