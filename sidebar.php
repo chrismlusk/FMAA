@@ -14,9 +14,7 @@
             <h4><?php the_field('event_name'); ?></h4>
             <p><?php the_content(); ?></p>
             <ul class="icon-list">
-               <li class="time">
-                  <strong><?php echo event_countdown(get_field('event_date')); ?></strong>
-               </li>
+               <?php echo event_countdown(get_field('event_date')); ?>
             </ul>
 
          <?php else: ?>

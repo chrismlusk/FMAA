@@ -71,6 +71,13 @@ $grid-pad:           5px;
                0 4px 8px rgba(0,0,0,.28);
 }
 
+@-webkit-keyframes blink {
+   50% { opacity: 0; }
+}
+@keyframes blink {
+   50% { opacity: 0; }
+}
+
 
 /* -------------------------- */
 /* Fonts -------------------- */
@@ -339,6 +346,16 @@ ul {
             float: left;
             margin-top: -0.063em;
             margin-left: -1.5em;
+         }
+         &.live {
+            color: #D4281B;
+            -webkit-animation: blink 1.25s step-start 0s infinite;
+            animation: blink 1.25s step-start 0s infinite;
+            &:before {
+               content: "\f111";
+               color: #D4281B;
+               margin-left: -1.4em;
+            }
          }
          &.time {
             &:before {

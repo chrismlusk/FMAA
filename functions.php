@@ -553,13 +553,17 @@ function event_countdown( $var )
 
     // don't print days or hours if 0
     if ( $days == 0 ) {
-        $countdown = $hours . ' left';
+        $countdown = '<li class="time"><strong>' . $hours . ' left</strong></li>';
     }
     elseif ( $hours == 0 ) {
-        $countdown = $days . ' left';
+        $countdown = '<li class="time"><strong>' . $days . ' left</strong></li>';
+    }
+    elseif ( $days < 0 && $hours < 0 ) {
+        $countdown = '<li class="live"><strong>Live!</strong></li>';
     }
     else {
         $countdown = $days . ', ' . $hours . ' left';
+        $countdown = '<li class="time"><strong>' . $days . ', ' . $hours . ' left</strong></li>';
     }
     return $countdown;
 }

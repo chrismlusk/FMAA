@@ -29,9 +29,7 @@ get_header(); ?>
                      <h4><?php the_field('event_name'); ?></h4>
                      <p><?php the_content(); ?></p>
                      <ul class="icon-list">
-                        <li class="time">
-                           <strong><?php echo event_countdown(get_field('event_date')); ?></strong>
-                        </li>
+                        <?php echo event_countdown(get_field('event_date')); ?>
                      </ul>
 
                   <?php else: ?>
@@ -55,7 +53,7 @@ get_header(); ?>
                            We tweet at <a href="https://twitter.com/FriendMadness" target="_blank">@FriendMadness</a>, so follow and use the hashtag #FMAA16
                         </li>
                         <li class="trophy">
-                           Fill out and submit an <a href="http://friendshipmadness.com/wp-content/uploads/2016/03/2016-bracket.pdf" target="_blank">FMAA bracket</a> before the tournament tips off
+                           Check in with our <a href="/bracket">interactive bracket</a> to stay updated with the tourney
                         </li>
                         <li class="plus">
                            Download our official <a href="https://chrome.google.com/webstore/detail/friendship-madness/ljeefnijldbmngpomnkdiklijedmkmck?hl=en-US" target="_blank">Chrome extension</a> and make the web friendlier
@@ -131,6 +129,7 @@ get_header(); ?>
          <?php 
          $posts = get_posts( array(
             'category_name' => 'News',
+            'cat' => '-44',
             'posts_per_page' => 3,
             'orderby' => 'date',
             'order' => 'DESC'
