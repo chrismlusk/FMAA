@@ -558,7 +558,7 @@ function event_countdown( $var )
     elseif ( $hours == 0 ) {
         $countdown = '<li class="time"><strong>' . $days . ' left</strong></li>';
     }
-    elseif ( $days < 0 && $hours < 0 ) {
+    elseif ( $days < 0 && $hours <= 0 ) {
         $countdown = '<li class="live"><strong>Live!</strong></li>';
     }
     else {
