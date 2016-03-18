@@ -262,7 +262,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 5/12 vs 4/13 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 0, 13 );
                               ?>
                            </tr>
                            <tr><!-- 6/11 vs 3/14 -->
