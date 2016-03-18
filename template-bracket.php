@@ -257,16 +257,7 @@ $posts = get_posts( array(
                               <td><?php echo $region; ?></td>
                            </tr>
                            <tr><!-- 1/16 vs 8/9 -->
-                              <?php 
-<<<<<<< HEAD
-                                 bracket_matchup( $region, $round, 1, 9 );
-=======
-<<<<<<< HEAD
-                                 bracket_matchup( $region, $round, 1, 9 );
-=======
-                                 bracket_matchup( $region, $round, 0, 9 );
->>>>>>> e73039dd9e2b7da67f9cfb8e3a72a4ea744b41a9
->>>>>>> 2aa7788226cf3136b52a1f3032cb5bc8dbf2cc10
+                              <?php                                  bracket_matchup( $region, $round, 1, 9 );
                               ?>
                            </tr>
                            <tr><!-- 5/12 vs 4/13 -->
@@ -299,15 +290,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 5/12 vs 4/13 -->
                               <?php 
-<<<<<<< HEAD
                                  bracket_matchup( $region, $round, 12, 4 );
-=======
-<<<<<<< HEAD
-                                 bracket_matchup( $region, $round, 12, 4 );
-=======
-                                 bracket_matchup( $region, $round, 0, 4 );
->>>>>>> e73039dd9e2b7da67f9cfb8e3a72a4ea744b41a9
->>>>>>> 2aa7788226cf3136b52a1f3032cb5bc8dbf2cc10
                               ?>
                            </tr>
                            <tr><!-- 6/11 vs 3/14 -->
@@ -358,15 +341,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 1/16 vs 8/9 -->
                               <?php 
-<<<<<<< HEAD
                                  bracket_matchup( $region, $round, 1, 9 );
-=======
-<<<<<<< HEAD
-                                 bracket_matchup( $region, $round, 1, 9 );
-=======
-                                 bracket_matchup( $region, $round, 0, 9 );
->>>>>>> e73039dd9e2b7da67f9cfb8e3a72a4ea744b41a9
->>>>>>> 2aa7788226cf3136b52a1f3032cb5bc8dbf2cc10
                               ?>
                            </tr>
                            <tr><!-- 5/12 vs 4/13 -->
