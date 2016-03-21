@@ -379,12 +379,12 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 1/16/8/9 vs 5/12/4/13 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 1, 0 );
+                                 bracket_matchup( $region, $round, 1, 5 );
                               ?>
                            </tr>
                            <tr><!-- 6/11/3/14 vs 7/10/2/15 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 3, 0 );
+                                 bracket_matchup( $region, $round, 3, 2 );
                               ?>
                            </tr>
                         </tbody>
@@ -397,12 +397,12 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 1/16/8/9 vs 5/12/4/13 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 4 );
+                                 bracket_matchup( $region, $round, 1, 4 );
                               ?>
                            </tr>
                            <tr><!-- 6/11/3/14 vs 7/10/2/15 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 3, 2 );
                               ?>
                            </tr>
                         </tbody>
@@ -420,7 +420,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 6/11/3/14 vs 7/10/2/15 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 6, 7 );
                               ?>
                            </tr>
                         </tbody>
@@ -438,7 +438,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- 6/11/3/14 vs 7/10/2/15 -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 11, 10 );
                               ?>
                            </tr>
                         </tbody>
