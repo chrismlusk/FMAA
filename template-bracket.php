@@ -487,7 +487,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- final two seeds -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 1, 6 );
                               ?>
                            </tr>
                         </tbody>
@@ -500,7 +500,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- final two seeds -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 1, 10 );
                               ?>
                            </tr>
                         </tbody>
