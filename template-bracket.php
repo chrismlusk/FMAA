@@ -523,7 +523,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- region winner -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 2, 0 );
                               ?>
                            </tr>
                         </tbody>
@@ -536,7 +536,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- region winner -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 2, 0 );
                               ?>
                            </tr>
                         </tbody>
@@ -549,7 +549,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- region winner -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 1, 0 );
                               ?>
                            </tr>
                         </tbody>
@@ -562,7 +562,7 @@ $posts = get_posts( array(
                            </tr>
                            <tr><!-- region winner -->
                               <?php 
-                                 bracket_matchup( $region, $round, 0, 0 );
+                                 bracket_matchup( $region, $round, 10, 0 );
                               ?>
                            </tr>
                         </tbody>
