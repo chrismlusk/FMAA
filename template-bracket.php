@@ -23,6 +23,102 @@ $posts = get_posts( array(
 
             <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
+               <!-- FRIENDLY FOUR BRACKET -->
+               <article class="article hidden-xs" style="margin-bottom: 60px;">
+                  <div class="bracket-wrap">
+                  <table width="100%">
+                     <tr>
+                     <td>
+
+                     <!-- 1. South vs. West matchup -->
+                     <table class="table">
+                        <tbody>
+                           <tr><!-- ff-1 -->
+                           <td class="round ff-1">
+                              <div class="matchup">
+                                 <div class="team top">
+                                    <span class="rank">2</span><span class="name  " data-toggle="tooltip" data-placement="right" title="" data-original-title="Villanova">Katie Rutledge</span>
+                                 </div>
+                                 <div class="team bottom">
+                                    <span class="rank">2</span><span class="name  " data-toggle="tooltip" data-placement="right" title="" data-original-title="Oklahoma">Max Calanni</span>
+                                 </div>
+                              </div>
+                           </td>
+                           </tr>
+                        </tbody>
+                     </table>
+
+                     <!-- 2. South vs. West winner -->
+                     <table class="table">
+                        <tbody>
+                           <tr><!-- ff-2 -->
+                           <td class="round ff-2">
+                              <div class="matchup">
+                                 <div class="team top">
+                                    <span class="inactive">TBD</span>
+                                 </div>
+                              </div>
+                           </td>
+                           </tr>
+                        </tbody>
+                     </table>
+
+                     <!-- 3. Best Friend! -->
+                     <table class="table">
+                        <tbody>
+                           <tr><!-- ff-3 -->
+                           <td class="round ff-3">
+                              <div class="matchup">
+                                 <div class="team top">
+                                    <!-- <span class="" data-toggle="tooltip" data-placement="right" title="" data-original-title="Oklahoma">Max Calanni</span> -->
+                                    <span class="inactive">&nbsp;</span>
+                                 </div>
+                              </div>
+                           </td>
+                           </tr>
+                        </tbody>
+                     </table>
+
+                     <!-- 4. East vs. Midwest winner -->
+                     <table class="table">
+                        <tbody>
+                           <tr><!-- ff-4 -->
+                           <td class="round ff-4">
+                              <div class="matchup">
+                                 <div class="team top">
+                                    <span class="inactive">TBD</span>
+                                 </div>
+                              </div>
+                           </td>
+                           </tr>
+                        </tbody>
+                     </table>
+
+                     <!-- 5. East vs. Midwest matchup -->
+                     <table class="table">
+                        <tbody>
+                           <tr><!-- ff-5 -->
+                           <td class="round ff-5">
+                              <div class="matchup">
+                                 <div class="team top">
+                                    <span class="rank">1</span><span class="name  " data-toggle="tooltip" data-placement="right" title="" data-original-title="North Carolina">Chris Lusk</span>
+                                 </div>
+                                 <div class="team bottom">
+                                    <span class="rank">10</span><span class="name  " data-toggle="tooltip" data-placement="right" title="" data-original-title="Syracuse">Keifer Truett</span>
+                                 </div>
+                              </div>
+                           </td>
+                           </tr>
+                        </tbody>
+                     </table>
+
+                     </td>
+                     </tr>
+                  </table>
+                  </div>
+               </article>
+               <!-- /friendly four bracket -->
+
                <!-- article -->
                <article class="article">
 
