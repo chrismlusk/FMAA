@@ -103,7 +103,7 @@ $posts = get_posts( array(
                                     <span class="rank">1</span><span class="name  " data-toggle="tooltip" data-placement="right" title="" data-original-title="North Carolina">Chris Lusk</span>
                                  </div>
                                  <div class="team bottom">
-                                    <span class="rank">10</span><span class="name  " data-toggle="tooltip" data-placement="right" title="" data-original-title="Syracuse">Keifer Truett</span>
+                                    <span class="rank">10</span><span class="name knocked-out" data-toggle="tooltip" data-placement="right" title="" data-original-title="Syracuse">Keifer Truett</span>
                                  </div>
                               </div>
                            </td>
