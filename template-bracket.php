@@ -37,10 +37,10 @@ $posts = get_posts( array(
                            <td class="round ff-1">
                               <div class="matchup">
                                  <div class="team top">
-                                    <span class="rank">2</span><span class="name  " data-toggle="tooltip" data-placement="right" title="" data-original-title="Villanova">Katie Rutledge</span>
+                                    <span class="rank">2</span><span class="name bold" data-toggle="tooltip" data-placement="right" title="" data-original-title="Villanova">Katie Rutledge</span>
                                  </div>
                                  <div class="team bottom">
-                                    <span class="rank">2</span><span class="name  " data-toggle="tooltip" data-placement="right" title="" data-original-title="Oklahoma">Max Calanni</span>
+                                    <span class="rank">2</span><span class="name knocked-out" data-toggle="tooltip" data-placement="right" title="" data-original-title="Oklahoma">Max Calanni</span>
                                  </div>
                               </div>
                            </td>
@@ -55,7 +55,7 @@ $posts = get_posts( array(
                            <td class="round ff-2">
                               <div class="matchup">
                                  <div class="team top">
-                                    <span class="inactive">TBD</span>
+                                    <span class="rank">2</span><span class="name bold" data-toggle="tooltip" data-placement="right" title="" data-original-title="Villanova">Katie Rutledge</span>
                                  </div>
                               </div>
                            </td>
@@ -70,8 +70,7 @@ $posts = get_posts( array(
                            <td class="round ff-3">
                               <div class="matchup">
                                  <div class="team top">
-                                    <!-- <span class="" data-toggle="tooltip" data-placement="right" title="" data-original-title="Oklahoma">Max Calanni</span> -->
-                                    <span class="inactive">&nbsp;</span>
+                                    <span class="rank">2</span><span class="name bold" data-toggle="tooltip" data-placement="right" title="" data-original-title="Villanova">Katie Rutledge</span>
                                  </div>
                               </div>
                            </td>
@@ -86,7 +85,7 @@ $posts = get_posts( array(
                            <td class="round ff-4">
                               <div class="matchup">
                                  <div class="team top">
-                                    <span class="inactive">TBD</span>
+                                    <span class="rank">1</span><span class="name knocked-out" data-toggle="tooltip" data-placement="right" title="" data-original-title="North Carolina">Chris Lusk</span>
                                  </div>
                               </div>
                            </td>
