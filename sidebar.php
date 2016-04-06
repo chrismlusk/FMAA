@@ -48,12 +48,14 @@
             <li><strong>2013:</strong> Chris Lusk</li>
             <li><strong>2014:</strong> Shelby Lollis</li>
             <li><strong>2015:</strong> Chris Lusk</li>
+            <li><strong>2016:</strong> Katie Rutledge</li>
          </ul>
          <h4>Social Media MVP</h4>
          <ul class="default-list">
             <li><strong>2013:</strong> Jake Lovett &amp; Chris Lusk</li>
             <li><strong>2014:</strong> Jeremiah Davis</li>
             <li><strong>2015:</strong> Jessie Opoien</li>
+            <li><strong>2016:</strong> Katie Rutledge</li>
          </ul>
       </div>
    </div>

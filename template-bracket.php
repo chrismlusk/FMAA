@@ -100,7 +100,7 @@ $posts = get_posts( array(
                            <td class="round ff-5">
                               <div class="matchup">
                                  <div class="team top">
-                                    <span class="rank">1</span><span class="name  " data-toggle="tooltip" data-placement="right" title="" data-original-title="North Carolina">Chris Lusk</span>
+                                    <span class="rank">1</span><span class="name knocked-out" data-toggle="tooltip" data-placement="right" title="" data-original-title="North Carolina">Chris Lusk</span>
                                  </div>
                                  <div class="team bottom">
                                     <span class="rank">10</span><span class="name knocked-out" data-toggle="tooltip" data-placement="right" title="" data-original-title="Syracuse">Keifer Truett</span>
